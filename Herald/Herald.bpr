@@ -31,15 +31,15 @@
     <USERDEFINES value="_DEBUG"/>
     <SYSDEFINES value="_RTLDLL;NO_STRICT"/>
     <MAINSOURCE value="Herald.cpp"/>
-    <INCLUDEPATH value="C:\Programmi\Borland\CBuilder6\Projects;E:\devel\Unisuite\Common;E:\devel\Unisuite\Herald;$(BCB)\include;$(BCB)\include\vcl"/>
-    <LIBPATH value="C:\Programmi\Borland\CBuilder6\Projects;E:\devel\Unisuite\Common;E:\devel\Unisuite\Herald;$(BCB)\lib\obj;$(BCB)\lib"/>
+    <INCLUDEPATH value="..\Common;C:\Programmi\Borland\CBuilder6\Projects;E:\devel\Unisuite\Common;E:\devel\Unisuite\Herald;$(BCB)\include;$(BCB)\include\vcl"/>
+    <LIBPATH value="..\Common;C:\Programmi\Borland\CBuilder6\Projects;E:\devel\Unisuite\Common;E:\devel\Unisuite\Herald;$(BCB)\lib\obj;$(BCB)\lib"/>
     <WARNINGS value="-w-par"/>
     <OTHERFILES value=""/>
   </MACROS>
   <OPTIONS>
-    <IDLCFLAGS value="-IC:\Programmi\Borland\CBuilder6\Projects -IE:\devel\Unisuite\Common 
-      -IE:\devel\Unisuite\Herald -I$(BCB)\include -I$(BCB)\include\vcl 
-      -src_suffix cpp -D_DEBUG -boa"/>
+    <IDLCFLAGS value="-I..\Common -IC:\Programmi\Borland\CBuilder6\Projects 
+      -IE:\devel\Unisuite\Common -IE:\devel\Unisuite\Herald -I$(BCB)\include 
+      -I$(BCB)\include\vcl -src_suffix cpp -D_DEBUG -boa"/>
     <CFLAG1 value="-Od -H=$(BCB)\lib\vcl60.csm -Hc -Vx -Ve -X- -r- -a8 -6 -b- -k -y -v -vi- 
       -c -tW -tWM"/>
     <PFLAGS value="-N2c:\objects\herald -N0c:\objects\herald -$YD -$W -$O- -$A8 -v -JPHNE -M"/>
