@@ -9,6 +9,7 @@
 #include "UtilUnit.h"
 #include "ErrorUnit.h"
 #include "stringhe.hpp"
+#include "GotoUnit.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"
@@ -36,12 +37,30 @@ void __fastcall TMainForm::GradientIndexChange(TObject *Sender)
 void __fastcall TMainForm::ColorPaletteMouseDown(TObject *Sender,
       TMouseButton Button, TShiftState Shift, int X, int Y)
 {
-	int hindex = m2v(X/10, Y/10, 60);
-	Hues::PaintHue(hindex, HueColors->Canvas, 10, 30);
+        switch (Button)
+        {
+                case mbLeft:
+                        {
+                	        int hindex = m2v(X/10, Y/10, 60)+1;
+                	        Hues::PaintHue(hindex, HueColors->Canvas, 10, 30);
 
-        ColorName->Text = Hues::GetName(hindex);
-        AnsiString colorcode; colorcode.sprintf("%x", hindex );
-        ColorCode->Caption = colorcode;
+                                ColorName->Text = Hues::GetName(hindex);
+                                AnsiString colorcode; colorcode.sprintf("%x", hindex );
+                                ColorCode->Caption = colorcode;
+                        }
+                        break;
+                case mbRight:
+                                if ( GotoForm->ShowModal() == mrOk )
+                                {
+                                        int hindex = GotoForm->Index.ToIntDef(1);
+                                        hindex = ( hindex < 1 ? hindex : 1 ); // min 1
+                        	        Hues::PaintHue(hindex, HueColors->Canvas, 10, 30);
+
+                                        ColorName->Text = Hues::GetName(hindex);
+                                        AnsiString colorcode; colorcode.sprintf("%x", hindex );
+                                        ColorCode->Caption = colorcode;
+                                }
+        }
 }
 //---------------------------------------------------------------------------
 
@@ -86,4 +105,6 @@ void TMainForm::LoadRegistry()
         }
         delete Reg;
 }
+
+//---------------------------------------------------------------------------
 

@@ -4,6 +4,15 @@ Calling, UH is Herald.
 If there is no prefix, the change is common to all the Unicorn Suite's projects.
 (Common code or a deployed change).
 
+2003/04/27
+ - UR: Clicking with right mouse button you can jump to a specified color index.
+   For now you can only insert decimal indexes. If the index is < 1, is 1 the
+   index actually used.
+
+2003/04/26
+ - UG: Launcher: Defaulted the port for clients to 2593 when adding a new one.
+ - UR: Corrected the hues index shown (was -1)
+
 Release 0.3
 2003/04/26
  - Moved to NSIS 2b3a (I forgot to update it :/ )

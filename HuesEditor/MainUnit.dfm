@@ -21,6 +21,7 @@ object MainForm: TMainForm
     Top = 69
     Width = 600
     Height = 500
+    OnClick = ColorPaletteClick
     OnMouseDown = ColorPaletteMouseDown
   end
   object ColorCode: TLabel

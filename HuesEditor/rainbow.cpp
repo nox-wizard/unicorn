@@ -4,6 +4,7 @@
 #pragma hdrstop
 //---------------------------------------------------------------------------
 USEFORM("MainUnit.cpp", MainForm);
+USEFORM("GotoUnit.cpp", GotoForm);
 //---------------------------------------------------------------------------
 WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 {
@@ -12,6 +13,7 @@ WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
                  Application->Initialize();
                  Application->Title = "Unicorn's Rainbow";
                  Application->CreateForm(__classid(TMainForm), &MainForm);
+                 Application->CreateForm(__classid(TGotoForm), &GotoForm);
                  Application->Run();
         }
         catch (Exception &exception)

@@ -191,7 +191,7 @@ void __fastcall TMainForm::AddBtnClick(TObject *Sender)
         AccountName->Text = "";
         AccountPassword->Text = "";
         ServerIP->Text = "";
-        ServerPort->Text = "";
+        ServerPort->Text = "2593";
 
         OKBtn->Tag = 2;
 }

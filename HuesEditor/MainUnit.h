@@ -34,6 +34,7 @@ __published:	// IDE-managed Components
         void __fastcall HueColorsMouseDown(TObject *Sender,
           TMouseButton Button, TShiftState Shift, int X, int Y);
         void __fastcall SaveBtnClick(TObject *Sender);
+        void __fastcall ColorPaletteClick(TObject *Sender);
 private:	// User declarations
         void LoadRegistry();
         AnsiString uopath;
