@@ -1,23 +1,25 @@
 ; software related
 !define MUI_PRODUCT "Unicorn GM-Tools Suite"
-!define MUI_VERSION "0.3"
+!define MUI_VERSION "0.3.1"
 
 ; inclusione d'obbligo
 !include "MUI.nsh"
+
+SetCompressor bzip2
 
 ; ----------------------------------------------------------------
 ; componenti
 ; ----------------------------------------------------------------
   !define MUI_LICENSEPAGE
-;  !define MUI_COMPONENTSPAGE
+  !define MUI_COMPONENTSPAGE
   !define MUI_DIRECTORYPAGE
   !define MUI_STARTMENUPAGE
-  
+
   !define MUI_FINISHPAGE
   !define MUI_FINISHPAGE_RUN "$INSTDIR\unicorn.exe"
 
   !define MUI_ABORTWARNING
-  
+
   !define MUI_UNINSTALLER
   !define MUI_UNCONFIRMPAGE
 
@@ -27,6 +29,8 @@
 !insertmacro MUI_LANGUAGE "English"
 !insertmacro MUI_LANGUAGE "Italian"
 
+!include "ZipDLL.nsh"
+
 LangString DESC_basefiles ${LANG_ENGLISH} "Executable and library files needed to execute Unicorn"
 LangString DESC_basefiles ${LANG_ITALIAN} "File eseguibili e di libreria necessari all'esecuzione di unicorn"
 
@@ -35,6 +39,13 @@ LangString DESC_rainbow ${LANG_ITALIAN} "L'editor Hues di Unicorn"
 
 LangString DESC_calling ${LANG_ENGLISH} "Unicorn's Remote Console Client for NoX"
 LangString DESC_calling ${LANG_ITALIAN} "Il client per la Remote Console di NoX di Unicorn"
+
+LangString DL_TITLE ${LANG_ENGLISH} "Download"
+LangString DL_TITLE ${LANG_ITALIAN} "Scarico"
+
+LangString DL_SUBTITLE ${LANG_ENGLISH} "Downloading runtime libraries"
+LangString DL_SUBTITLE ${LANG_ITALIAN} "Sto scaricando le librerie runtime"
+
 
 ; ----------------------------------------------------------------
 ; Dati generici
@@ -47,7 +58,7 @@ LangString DESC_calling ${LANG_ITALIAN} "Il client per la Remote Console di NoX 
 
 !insertmacro MUI_RESERVEFILE_LANGDLL
 
-Section "Unicorn" basefiles
+Section "-Unicorn" basefiles
 
   ; ----------------------------------------------------------------
   ; Files
@@ -58,8 +69,6 @@ Section "Unicorn" basefiles
   File "bin\unicorn.enu"        ; Unicorn English Resource DLL
   File "bin\uomap.ocx"          ; UOMap ActiveX
   File "bin\uoart.ocx"          ; UOArt ActiveX
-  File "bin\borlndmm.dll"      ; runtime libraries
-  File "bin\cc3260mt.dll"       ; runtime libraries                               
 
   File "docs\license.txt"       ; GPL
   File "docs\History.txt"       ; ChangeLog
@@ -154,7 +163,7 @@ Section "Uninstall"
   noshortcuts:
 
   RMDir "$INSTDIR"
-  
+
   DeleteRegValue HKCU "Software\${MUI_PRODUCT}" "Start Menu Folder"
   DeleteRegValue HKCU "Software\${MUI_PRODUCT}" "Installer Language"
   DeleteRegValue HKCU "Software\Borland\Locales" "$INSTDIR\Unicorn.exe"
@@ -174,6 +183,45 @@ SectionEnd
 !insertmacro MUI_FUNCTIONS_DESCRIPTION_END
 
 Function .onInit
+  Banner::show /NOUNLOAD "Downloading runtime libraries..."
+    IfFileExists "$SYSDIR\stlpmt45.dll" nodownload_stlpmt download_stlpmt
+
+    download_stlpmt:
+      NSISdl::download http://flameeyes.web.ctonet.it/bcb-rtl/stlpmt45.zip "$TEMP\stlpmt45.zip"
+        Pop $R0 ;Get the return value
+        StrCmp $R0 "success" +4
+          MessageBox MB_OK "Download failed: $R0."
+	  Delete "$SYSDIR\stlpmt45.dll"
+          Quit
+	!insertmacro MUI_ZIPDLL_EXTRACTALL "$TEMP\stlpmt45.zip" "$SYSDIR"
+
+    nodownload_stlpmt:
+    IfFileExists "$SYSDIR\borlndmm.dll" nodownload_borlndmm download_borlndmm
+
+    download_borlndmm:
+      NSISdl::download http://flameeyes.web.ctonet.it/bcb-rtl/borlndmm.zip "$TEMP\borlndmm.zip"
+        Pop $R0 ;Get the return value
+        StrCmp $R0 "success" +4
+          MessageBox MB_OK "Download failed: $R0."
+	  Delete "$SYSDIR\borlndmm.dll"
+          Quit
+	!insertmacro MUI_ZIPDLL_EXTRACTALL "$TEMP\borlndmm.zip" "$SYSDIR"
+
+    nodownload_borlndmm:
+    IfFileExists "$SYSDIR\cc3260mt.dll" nodownload_cc3260mt download_cc3260mt
+
+    download_cc3260mt:
+      NSISdl::download http://flameeyes.web.ctonet.it/bcb-rtl/cc3260mt.zip "$TEMP\cc3260mt.zip"
+        Pop $R0 ;Get the return value
+        StrCmp $R0 "success" +4
+          MessageBox MB_OK "Download failed: $R0."
+	  Delete "$SYSDIR\borlndmm.dll"
+          Quit
+	!insertmacro MUI_ZIPDLL_EXTRACTALL "$TEMP\cc3260.zip" "$SYSDIR"
+
+    nodownload_cc3260mt:
+
+  Banner::destroy
   !insertmacro MUI_LANGDLL_DISPLAY
 FunctionEnd
 
