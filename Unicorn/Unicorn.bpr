@@ -11,16 +11,15 @@
       C:\Objects\Unicorn\MapUnit.obj C:\Objects\Unicorn\HuesUnit.obj 
       C:\Objects\Unicorn\XSSParseUnit.obj 
       C:\Objects\Unicorn\LocationEditUnit.obj C:\Objects\Unicorn\ObjectEditUnit.obj 
-      C:\Objects\Unicorn\ParamsUnit.obj C:\Objects\Unicorn\ProgressUnit.obj 
-      C:\Objects\Unicorn\UtilUnit.obj C:\Objects\Unicorn\CRC32Unit.obj 
-      C:\Objects\Unicorn\HuesParser.obj C:\Objects\Unicorn\stringhe.obj 
-      C:\Objects\Unicorn\ErrorUnit.obj"/>
+      C:\Objects\Unicorn\ParamsUnit.obj C:\Objects\Unicorn\UtilUnit.obj 
+      C:\Objects\Unicorn\CRC32Unit.obj C:\Objects\Unicorn\HuesParser.obj 
+      C:\Objects\Unicorn\stringhe.obj C:\Objects\Unicorn\ErrorUnit.obj"/>
     <RESFILES value="Unicorn.res"/>
     <IDLFILES value=""/>
     <IDLGENFILES value=""/>
     <DEFFILE value=""/>
     <RESDEPEN value="$(RESFILES) MainUnit.dfm SplashUnit.dfm FileUnit.dfm HuesUnit.dfm 
-      LocationEditUnit.dfm ObjectEditUnit.dfm ParamsUnit.dfm ProgressUnit.dfm"/>
+      LocationEditUnit.dfm ObjectEditUnit.dfm ParamsUnit.dfm"/>
     <LIBFILES value=""/>
     <LIBRARIES value="bcb2kaxserver.lib indy.lib dbxcds.lib dclocx.lib soaprtl.lib bcbie.lib 
       nmfast.lib dsnapcon.lib dsnapcrba.lib visualdbclx.lib teeqr.lib dss.lib 
@@ -35,8 +34,7 @@
       dsnapcon.lib nmfast.lib bcbie.lib soaprtl.lib dclocx.lib dbxcds.lib 
       indy.lib bcb2kaxserver.lib"/>
     <PACKAGES value="vcl.bpi rtl.bpi vclx.bpi bcbsmp.bpi vclie.bpi xmlrtl.bpi inet.bpi 
-      inetdbbde.bpi inetdbxpress.bpi dclusr.bpi dbrtl.bpi dsnap.bpi bdertl.bpi 
-      adortl.bpi vcldb.bpi webdsnap.bpi"/>
+      inetdbbde.bpi inetdbxpress.bpi dclusr.bpi"/>
     <PATHCPP value=".;..\Common;..\Common;..\Common;..\Common"/>
     <PATHPAS value=".;..\Common"/>
     <PATHRC value=".;"/>
@@ -85,7 +83,6 @@
       <FILE FILENAME="LocationEditUnit.cpp" FORMNAME="LocationEdit" UNITNAME="LocationEditUnit" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
       <FILE FILENAME="ObjectEditUnit.cpp" FORMNAME="ObjectEditForm" UNITNAME="ObjectEditUnit" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
       <FILE FILENAME="ParamsUnit.cpp" FORMNAME="ParamsForm" UNITNAME="ParamsUnit" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
-      <FILE FILENAME="ProgressUnit.cpp" FORMNAME="ProgressForm" UNITNAME="ProgressUnit" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
       <FILE FILENAME="..\Common\UtilUnit.cpp" FORMNAME="" UNITNAME="UtilUnit.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
       <FILE FILENAME="..\Common\CRC32Unit.cpp" FORMNAME="" UNITNAME="CRC32Unit.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
       <FILE FILENAME="..\Common\HuesParser.cpp" FORMNAME="" UNITNAME="HuesParser" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
@@ -102,7 +99,7 @@ AutoIncBuild=1
 MajorVer=0
 MinorVer=3
 Release=4
-Build=241
+Build=242
 Debug=0
 PreRelease=1
 Special=0
@@ -114,7 +111,7 @@ CodePage=1252
 [Version Info Keys]
 CompanyName=
 FileDescription=Unicorn GM-Tool for NoX-Wizard
-FileVersion=0.3.4.241
+FileVersion=0.3.4.242
 InternalName=UNICORN
 LegalCopyright=© 2003 Diego &quot;Flameeyes&quot; Pettenò
 LegalTrademarks=
@@ -123,6 +120,24 @@ ProductName=Unicorn GM-Tools Suite
 ProductVersion=0.2
 
 [Excluded Packages]
+c:\programmi\borland\cbuilder6\Bin\applet60.bpl=Borland Control Panel Applet Package
+c:\programmi\borland\cbuilder6\Bin\bcbie60.bpl=Borland C++Builder Internet Explorer 5 Components Package
+C:\Programmi\Borland\CBuilder6\Bin\dclbde60.bpl=Borland BDE DB Components
+C:\Programmi\Borland\CBuilder6\Bin\dcldb60.bpl=Borland Database Components
+C:\Programmi\Borland\CBuilder6\Bin\dbx60.bpl=Borland SQL Explorer UI Package
+c:\programmi\borland\cbuilder6\Bin\dclact60.bpl=Borland ActionBar Components
+c:\programmi\borland\cbuilder6\Bin\dclado60.bpl=Borland ADO DB Components
+c:\programmi\borland\cbuilder6\Bin\dclbdecds60.bpl=Borland Local BDE ClientDataset Components
+C:\Programmi\Borland\CBuilder6\Bin\dclcds60.bpl=Borland Base Cached ClientDataset Component
+C:\Programmi\Borland\CBuilder6\Bin\dclmid60.bpl=Borland MyBase DataAccess Components
+c:\programmi\borland\cbuilder6\Bin\dclclxdb60.bpl=Borland CLX Database Components
+C:\Programmi\Borland\CBuilder6\Bin\dclclxstd60.bpl=Borland CLX Standard Components
+c:\programmi\borland\cbuilder6\Bin\dcldbx60.bpl=Borland dbExpress Components
+c:\programmi\borland\cbuilder6\Bin\dcldbxcds60.bpl=Borland Local DBX ClientDataset Components
+c:\programmi\borland\cbuilder6\Bin\dclmcn60.bpl=Borland DataSnap Connection Components
+c:\programmi\borland\cbuilder6\Bin\dclmlwiz60.bpl=Borland Markup Language Wizards
+c:\programmi\borland\cbuilder6\Bin\dclocx60.bpl=Borland Sample Imported ActiveX Controls
+c:\programmi\borland\cbuilder6\Bin\dclwbm60.bpl=Borland InternetExpress Components
 c:\programmi\borland\cbuilder6\Bin\DBWEBXPRT.BPL=Borland Web Wizard Package
 c:\programmi\borland\cbuilder6\Bin\dcl31w60.bpl=Delphi 1.0 Compatibility Components
 c:\programmi\borland\cbuilder6\Bin\dcldss60.bpl=Borland Decision Cube Components
@@ -132,7 +147,6 @@ c:\programmi\borland\cbuilder6\Bin\dclindy60.bpl=Internet Direct (Indy) for D6 P
 c:\programmi\borland\cbuilder6\Bin\DCLNMF60.bpl=NetMasters Fastnet Tools
 c:\programmi\borland\cbuilder6\Bin\dclqrt60.bpl=QuickReport Components
 c:\programmi\borland\cbuilder6\Bin\dcltqr60.bpl=TeeChart for QuickReport Components
-c:\programmi\borland\cbuilder6\Bin\idefilters60.bpl=IDE Filter for CPP32
 c:\programmi\borland\cbuilder6\Bin\dclite60.bpl=Borland Integrated Translation Environment
 c:\programmi\borland\cbuilder6\Bin\dclwebsnap60.bpl=Borland WebSnap Components
 

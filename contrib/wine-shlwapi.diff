@@ -1,0 +1,361 @@
+? dlls/shlwapi/.path.c.swp
+Index: dlls/shlwapi/path.c
+===================================================================
+RCS file: /home/wine/wine/dlls/shlwapi/path.c,v
+retrieving revision 1.35
+diff -u -3 -r1.35 path.c
+--- dlls/shlwapi/path.c	19 Jul 2003 03:12:36 -0000	1.35
++++ dlls/shlwapi/path.c	19 Aug 2003 09:15:14 -0000
+@@ -3053,8 +3053,77 @@
+  */
+ BOOL WINAPI PathSearchAndQualifyA(LPCSTR lpszPath, LPSTR lpszBuf, UINT cchBuf)
+ {
+-  FIXME("(%s,%p,0x%08x)-stub\n", debugstr_a(lpszPath), lpszBuf, cchBuf);
+-  return FALSE;
++  TRACE("(%s %p %d)\n", debugstr_a(lpszPath), lpszBuf, cchBuf);
++
++  if (!lpszPath || !*lpszPath)
++    return FALSE;
++
++  LPSTR temp_in = malloc(sizeof(*lpszPath) * cchBuf);
++  StrCpyA(temp_in, lpszPath);
++  lpszPath = temp_in;
++  LPSTR temp_out = lpszBuf;
++  LPSTR temp_out2 = temp_out;
++  BOOL ret = TRUE;
++  
++  if (*temp_in == '\\' && temp_in[1] == '\\')
++  {
++    /* Network share: skip share server and mount point */
++    temp_in += 2;
++    if ((temp_in = StrChrA(temp_in, '\\')) &&
++        (temp_in = StrChrA(temp_in + 1, '\\')))
++      temp_in++;
++  }
++
++  /* Check x:\ */
++  if (temp_in[0] && temp_in[1] == ':' && temp_in[2] == '\\')
++    temp_in += 3;
++
++  if ( temp_in != lpszPath )
++  {
++    StrCpyNA(temp_out, lpszPath, (temp_in - lpszPath) +1);
++    temp_out += (temp_in - lpszPath);
++    temp_out2 = temp_out;
++    *temp_out = '\0';
++    lpszPath = temp_in;
++  } else {
++    FIXME("must prepend current path");
++  }
++
++  while(*temp_in)
++  {
++    if ( *temp_in == '.' )
++    {
++      if ( ! temp_in[1] )
++      { ret = TRUE; break; }
++
++      if ( temp_in[1] == '\\' ) { temp_in += 2; continue; }
++        
++      if ( temp_in[1] == '.' && temp_in[2] == '\\' )
++      {
++        if ( temp_out == temp_out2 ) { temp_in += 3; continue; }
++
++        temp_out = StrRChrA(temp_out, temp_out2, '\\');
++        *temp_out = '\0'; continue;
++      }
++    } //if ( *temp_in == '.' )
++
++    if ( StrChrA(temp_in, '\\') )
++    {
++      size_t len = (StrChrA(temp_in, '\\') - temp_in )+1;
++      StrCpyNA(temp_out, temp_in, len+1);
++      temp_out += len;
++      temp_in += len;
++      *temp_out = '\0'; continue;
++    } else {
++      StrCpyA(temp_out, temp_in);
++      break;
++    }
++  } // while
++
++  TRACE("(%s)\n", debugstr_a(lpszBuf));
++
++  free(temp_in);
++  return ret;
+ }
+ 
+ /*************************************************************************
+@@ -3064,8 +3133,77 @@
+  */
+ BOOL WINAPI PathSearchAndQualifyW(LPCWSTR lpszPath, LPWSTR lpszBuf, UINT cchBuf)
+ {
+-  FIXME("(%s,%p,0x%08x)-stub\n", debugstr_w(lpszPath), lpszBuf, cchBuf);
+-  return FALSE;
++  TRACE("(%s %p %d)\n", debugstr_w(lpszPath), lpszBuf, cchBuf);
++
++  if (!lpszPath || !*lpszPath)
++    return FALSE;
++
++  LPWSTR temp_in = malloc(sizeof(*lpszPath) * cchBuf);
++  StrCpyW(temp_in, lpszPath);
++  lpszPath = temp_in;
++  LPWSTR temp_out = lpszBuf;
++  LPWSTR temp_out2 = temp_out;
++  BOOL ret = TRUE;
++  
++  if (*temp_in == '\\' && temp_in[1] == '\\')
++  {
++    /* Network share: skip share server and mount point */
++    temp_in += 2;
++    if ((temp_in = StrChrW(temp_in, '\\')) &&
++        (temp_in = StrChrW(temp_in + 1, '\\')))
++      temp_in++;
++  }
++
++  /* Check x:\ */
++  if (temp_in[0] && temp_in[1] == ':' && temp_in[2] == '\\')
++    temp_in += 3;
++
++  if ( temp_in != lpszPath )
++  {
++    StrCpyNW(temp_out, lpszPath, (temp_in - lpszPath) +1);
++    temp_out += (temp_in - lpszPath);
++    temp_out2 = temp_out;
++    *temp_out = '\0';
++    lpszPath = temp_in;
++  } else {
++    FIXME("must prepend current path");
++  }
++
++  while(*temp_in)
++  {
++    if ( *temp_in == '.' )
++    {
++      if ( ! temp_in[1] )
++      { ret = TRUE; break; }
++
++      if ( temp_in[1] == '\\' ) { temp_in += 2; continue; }
++        
++      if ( temp_in[1] == '.' && temp_in[2] == '\\' )
++      {
++        if ( temp_out == temp_out2 ) { temp_in += 3; continue; }
++
++        temp_out = StrRChrW(temp_out, temp_out2, '\\');
++        *temp_out = '\0'; continue;
++      }
++    } //if ( *temp_in == '.' )
++
++    if ( StrChrW(temp_in, '\\') )
++    {
++      size_t len = (StrChrW(temp_in, '\\') - temp_in )+1;
++      StrCpyNW(temp_out, temp_in, len+1);
++      temp_out += len;
++      temp_in += len;
++      *temp_out = '\0'; continue;
++    } else {
++      StrCpyW(temp_out, temp_in);
++      break;
++    }
++  } // while
++
++  TRACE("(%s)\n", debugstr_w(lpszBuf));
++
++  free(temp_in);
++  return ret;
+ }
+ 
+ /*************************************************************************
+@@ -3182,7 +3320,7 @@
+ HRESULT WINAPI PathCreateFromUrlW(LPCWSTR lpszUrl, LPWSTR lpszPath,
+                                   LPDWORD pcchPath, DWORD dwFlags)
+ {
+-  static const WCHAR stemp[] = { 'f','i','l','e',':','/','/',0 };
++  static const WCHAR stemp[] = { 'f','i','l','e',':','/','/', '/', 0 };
+   LPWSTR pwszPathPart;
+   HRESULT hr;
+ 
+@@ -3191,6 +3329,11 @@
+   if (!lpszUrl || !lpszPath || !pcchPath || !*pcchPath)
+     return E_INVALIDARG;
+ 
++  /* Path of the form file:///... */
++  if (!strncmpW(lpszUrl, stemp, 8))
++  {
++    lpszUrl += 8;
++  }
+   /* Path of the form file://... */
+   if (!strncmpW(lpszUrl, stemp, 7))
+   {
+Index: dlls/shlwapi/url.c
+===================================================================
+RCS file: /home/wine/wine/dlls/shlwapi/url.c,v
+retrieving revision 1.22
+diff -u -3 -r1.22 url.c
+--- dlls/shlwapi/url.c	18 Mar 2003 19:57:00 -0000	1.22
++++ dlls/shlwapi/url.c	19 Aug 2003 09:15:22 -0000
+@@ -458,7 +458,19 @@
+     nByteLen = (lstrlenW(pszUrl) + 1) * sizeof(WCHAR); /* length in bytes */
+     lpszUrlCpy = HeapAlloc(GetProcessHeap(), 0, nByteLen);
+ 
+-    if (dwFlags & URL_DONT_SIMPLIFY)
++    if (dwFlags & URL_FILE_USE_PATHURL && ( *pszUrl && pszUrl[1] == ':' && pszUrl[2] == '\\' ) )
++    {
++      pszCanonicalized[0] = 'f';
++      pszCanonicalized[1] = 'i';
++      pszCanonicalized[2] = 'l';
++      pszCanonicalized[3] = 'e';
++      pszCanonicalized[4] = ':';
++      pszCanonicalized[5] = '/';
++      pszCanonicalized[6] = '/';
++      StrCpyW(pszCanonicalized+7, pszUrl);
++      TRACE("result %s\n", debugstr_w(pszCanonicalized));
++      return S_OK;
++    } else if (dwFlags & URL_DONT_SIMPLIFY)
+         memcpy(lpszUrlCpy, pszUrl, nByteLen);
+     else {
+ 
+@@ -1644,8 +1656,12 @@
+     case URLIS_URL:
+     case URLIS_NOHISTORY:
+     case URLIS_FILEURL:
++        return !StrCmpNA("file://", pszUrl, 7);
+     case URLIS_APPLIABLE:
+-    case URLIS_DIRECTORY:
++    case URLIS_DIRECTORY: {
++        LPCWSTR last = StrChrW(pszUrl, '\0') -1;
++        return ( *last == '/' || *last == '\\' );
++    }
+     case URLIS_HASQUERY:
+     default:
+ 	FIXME("(%s %d): stub\n", debugstr_a(pszUrl), Urlis);
+@@ -1663,6 +1679,7 @@
+     UNKNOWN_SHLWAPI_2 base;
+     DWORD res1;
+ 
++    TRACE("(%s %d)\n", debugstr_w(pszUrl), Urlis);
+     switch (Urlis) {
+ 
+     case URLIS_OPAQUE:
+@@ -1677,8 +1694,13 @@
+     case URLIS_URL:
+     case URLIS_NOHISTORY:
+     case URLIS_FILEURL:
++        return pszUrl[0] == 'f' && pszUrl[1] == 'i' && pszUrl[2] == 'l'
++            && pszUrl[3] == 'e' && pszUrl[4] == ':' && pszUrl[5] == '/' && pszUrl[6] == '/';
+     case URLIS_APPLIABLE:
+-    case URLIS_DIRECTORY:
++    case URLIS_DIRECTORY: {
++        LPCWSTR last = StrChrW(pszUrl, '\0') -1;
++        return ( *last == '/' || *last == '\\' );
++    }
+     case URLIS_HASQUERY:
+     default:
+ 	FIXME("(%s %d): stub\n", debugstr_w(pszUrl), Urlis);
+@@ -2100,26 +2122,29 @@
+ 		return E_INVALIDARG;
+ 	}
+ 
+-	for (pszConstPointer = pszPath; *pszConstPointer; pszConstPointer++)
+-	{
+-		if (isalpha(*pszConstPointer) || isdigit(*pszConstPointer) ||
+-			*pszConstPointer == '.' || *pszConstPointer == '-')
+-			nCharBeforeColon++;
+-		else break;
+-	}
+-	if (*pszConstPointer == ':') /* then already in URL format, so copy */
++	if ( ! (pszPath[0] && pszPath[1] == ':' && pszPath[2] == '\\') )
+ 	{
+-		dwChRequired = lstrlenA(pszPath);
+-		if (dwChRequired > *pcchUrl)
++		for (pszConstPointer = pszPath; *pszConstPointer; pszConstPointer++)
+ 		{
+-			*pcchUrl = dwChRequired;
+-			return E_POINTER;
++			if (isalpha(*pszConstPointer) || isdigit(*pszConstPointer) ||
++				*pszConstPointer == '.' || *pszConstPointer == '-')
++				nCharBeforeColon++;
++			else break;
+ 		}
+-		else
++		if (*pszConstPointer == ':') /* then already in URL format, so copy */
+ 		{
+-			*pcchUrl = dwChRequired;
+-			StrCpyA(pszUrl, pszPath);
+-			return S_FALSE;
++			dwChRequired = lstrlenA(pszPath);
++			if (dwChRequired > *pcchUrl)
++			{
++				*pcchUrl = dwChRequired;
++				return E_POINTER;
++			}
++			else
++			{
++				*pcchUrl = dwChRequired;
++				StrCpyA(pszUrl, pszPath);
++				return S_FALSE;
++			}
+ 		}
+ 	}
+ 	/* then must need converting to file: format */
+@@ -2173,6 +2198,8 @@
+ 		pszPointer++;
+ 	}
+ 	StrCpyA(pszPointer, pszNewUrl);
++	LPWSTR slash;
++	while((slash = StrChrW(pszUrl, '\\'))) *slash = '/';
+ 	TRACE("<- %s\n", debugstr_a(pszUrl));
+ 	return S_OK;
+ }
+@@ -2201,23 +2228,26 @@
+ 	if (!pszUrl || !pcchUrl || !pszUrl)
+ 		return E_INVALIDARG;
+ 
+-	for (pszConstPointer = pszPath; *pszConstPointer; pszConstPointer++)
+-	{
+-		if (isalphaW(*pszConstPointer) || isdigitW(*pszConstPointer) ||
+-			*pszConstPointer == '.' || *pszConstPointer == '-')
+-			nCharBeforeColon++;
+-		else break;
+-	}
+-	if (*pszConstPointer == ':') /* then already in URL format, so copy */
++	if ( ! (pszPath[0] && pszPath[1] == ':' && pszPath[2] == '\\') )
+ 	{
+-		dwChRequired = lstrlenW(pszPath);
+-		*pcchUrl = dwChRequired;
+-		if (dwChRequired > *pcchUrl)
+-			return E_POINTER;
+-		else
++		for (pszConstPointer = pszPath; *pszConstPointer; pszConstPointer++)
++		{
++			if (isalphaW(*pszConstPointer) || isdigitW(*pszConstPointer) ||
++				*pszConstPointer == '.' || *pszConstPointer == '-')
++				nCharBeforeColon++;
++			else break;
++		}
++		if (*pszConstPointer == ':') /* then already in URL format, so copy */
+ 		{
+-			StrCpyW(pszUrl, pszPath);
+-			return S_FALSE;
++			dwChRequired = lstrlenW(pszPath);
++			*pcchUrl = dwChRequired;
++			if (dwChRequired > *pcchUrl)
++				return E_POINTER;
++			else
++			{
++				StrCpyW(pszUrl, pszPath);
++				return S_FALSE;
++			}
+ 		}
+ 	}
+ 	/* then must need converting to file: format */
+@@ -2271,6 +2301,9 @@
+ 	}
+ 	StrCpyW(pszPointer, pszPath);
+ 	StrCpyW(pszUrl, pszNewUrl);
++
++	LPWSTR slash;
++	while((slash = StrChrW(pszUrl, '\\'))) *slash = '/';
+ 	return S_OK;
+ }
+ 

@@ -10,7 +10,6 @@ USEFORM("HuesUnit.cpp", PaletteForm);
 USEFORM("LocationEditUnit.cpp", LocationEdit);
 USEFORM("ObjectEditUnit.cpp", ObjectEditForm);
 USEFORM("ParamsUnit.cpp", ParamsForm);
-USEFORM("ProgressUnit.cpp", ProgressForm);
 //---------------------------------------------------------------------------
 WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 {

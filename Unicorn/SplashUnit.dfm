@@ -1,6 +1,6 @@
 object SplashForm: TSplashForm
-  Left = 258
-  Top = 238
+  Left = 262
+  Top = 261
   BorderIcons = []
   BorderStyle = bsNone
   Caption = 'SplashForm'

@@ -1,8 +1,8 @@
 object ObjectEditForm: TObjectEditForm
   Left = 192
   Top = 106
-  Width = 331
-  Height = 221
+  Width = 359
+  Height = 233
   Caption = 'Modifica oggetto'
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -101,11 +101,10 @@ object ObjectEditForm: TObjectEditForm
   object Preview: TUOArt
     Left = 267
     Top = 9
-    Width = 78
-    Height = 189
+    Width = 76
+    Height = 184
     TabOrder = 8
-    ControlData = {
-      0000010010080000891300000000000000000000000000000000000000B8E345}
+    ControlData = {00000100DB07000004130000000000000000000000000000}
   end
   object ArtID: TEdit
     Left = 103

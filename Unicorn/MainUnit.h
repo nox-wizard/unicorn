@@ -217,6 +217,7 @@ __published:	// IDE-managed Components
 	TButton *SetHexMoreXY;
 	TButton *AddParams;
 	TCheckBox *HotKeys;
+        TPopupMenu *FakePopup;
         void __fastcall MappaMouseDown(TObject *Sender,
           TMouseButton Button, TShiftState Shift, int X, int Y);
 	void __fastcall GoCmdClick(TObject *Sender);

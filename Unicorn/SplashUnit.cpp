@@ -30,7 +30,7 @@ void __fastcall TSplashForm::LogoClick(TObject *Sender)
 //---------------------------------------------------------------------------
 void __fastcall TSplashForm::FormShow(TObject *Sender)
 {
-	static const short passo = 10;
+	static const short passo = 13;
         AnsiString apppath = ExtractFileDir(Application->ExeName);
 
         WTFDoing->Caption = Stringhe_sf_Settings;

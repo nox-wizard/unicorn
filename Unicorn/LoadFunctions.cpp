@@ -225,21 +225,9 @@ bool ValidateCategories(_di_IXMLNodeList list, bool sub, TXMLDocument *doc, doc_
                 }
 
 		OleVariant str1 = NODENAME(i), str2;
-/*		if ( Stringize(str1).IsEmpty() )
-		{
-			str1 = "<none>";
-			NODENAME(i) = "<none>";
-		}
-*/
         	for(int j = i+1; j < list->Count; j++)
                 {
                         str2 = NODENAME(j);
-/*                        if ( str2.Type() == varNull )
-                        {
-                                str2 = "<none>";
-                                NODENAME(j) = "<none>";
-                        }
-*/
                         if ( Stringize(str1) == Stringize(str2) )
                         {
                                 modified = true;

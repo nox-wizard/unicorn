@@ -1,0 +1,6 @@
+You can run Unicorn in Wine without problems. At least is what I would, 'cause I'm using wine too.
+I'm using CVS version of Wine, at 20030819. The last release of wine [20030813] seems to have problems with treeviews, so probably you can't use Unicorn with it.
+Also, the pure cvs version doesn't run Unicorn directly.
+You need to set urlmon.dll and shlwapi.dll as natives [i'm using the ones from win98se], or only urlmon.dll and patch the sources with the two patches in contrib directory.
+Actually, I'm not sure if you need the bcb-fix one, but if you want to run borland c++ builder [or the command line tools for make noxwizard for example] you need this patch, else ilink32 (the Turbo Incremental Linker) will freeze.
+ 

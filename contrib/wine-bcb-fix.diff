@@ -1,0 +1,25 @@
+Index: dlls/ntdll/virtual.c
+===================================================================
+RCS file: /home/wine/wine/dlls/ntdll/virtual.c,v
+retrieving revision 1.9
+diff -u -3 -r1.9 virtual.c
+--- dlls/ntdll/virtual.c	12 Aug 2003 23:50:55 -0000	1.9
++++ dlls/ntdll/virtual.c	17 Aug 2003 11:15:57 -0000
+@@ -1203,6 +1203,8 @@
+         return STATUS_ACCESS_DENIED;
+     }
+ 
++    VirtualAlloc( 0x80000000, 0x1000, MEM_RESERVE | MEM_SYSTEM, PAGE_EXECUTE_READWRITE );
++
+     base = ROUND_ADDR( addr, page_mask );
+ 
+     /* Find the view containing the address */
+@@ -1255,6 +1257,8 @@
+     info->BaseAddress    = (LPVOID)base;
+     info->AllocationBase = (LPVOID)alloc_base;
+     info->RegionSize     = size - (base - alloc_base);
++    if ((info->BaseAddress + info->RegionSize) > 0xc0000000)
++        info->RegionSize = 0xc0000000 - (DWORD)info->BaseAddress;
+     if (res_len) *res_len = sizeof(*info);
+     return STATUS_SUCCESS;
+ }

@@ -122,25 +122,25 @@ void __fastcall TMainForm::Modifica1Click(TObject *Sender)
         LocationEdit->Z->Text = tnode->Attributes["z"];
         #undef tnode
 
-                if ( LocationEdit->ShowModal() == mrOk)
-                {
-                	SplashForm->Locations->DocumentElement->ChildNodes->
-                        Nodes[LocPlaces->Tag&0xFF]->ChildNodes->Nodes[LocPlaces->Tag>>8]->
-                        ChildNodes->Delete(LocPlaces->ItemIndex);
+        if ( LocationEdit->ShowModal() == mrOk)
+        {
+              	SplashForm->Locations->DocumentElement->ChildNodes->
+                Nodes[LocPlaces->Tag&0xFF]->ChildNodes->Nodes[LocPlaces->Tag>>8]->
+                ChildNodes->Delete(LocPlaces->ItemIndex);
 
-		        _di_IXMLNode tnode = SplashForm->Locations->DocumentElement->AddChild("category");
-                        tnode->Attributes["name"] = LocationEdit->Categories->Text;
-                        tnode = tnode->AddChild("subsection");
-                        tnode->Attributes["name"] = LocationEdit->Subcategories->Text;
-                        tnode = tnode->AddChild("place");
-                        tnode->Text = LocationEdit->Name->Text;
-                        tnode->Attributes["x"] = LocationEdit->X->Text;
-                        tnode->Attributes["y"] = LocationEdit->Y->Text;
-                        tnode->Attributes["z"] = LocationEdit->Z->Text;
-	        	SplashForm->Locations->SaveToFile();
-        		SplashForm->Locations->LoadFromFile();
-                        LoadLocations();
-                }
+                _di_IXMLNode tnode = SplashForm->Locations->DocumentElement->AddChild("category");
+                tnode->Attributes["name"] = LocationEdit->Categories->Text;
+                tnode = tnode->AddChild("subsection");
+                tnode->Attributes["name"] = LocationEdit->Subcategories->Text;
+                tnode = tnode->AddChild("place");
+                tnode->Attributes["name"] = LocationEdit->Name->Text;
+                tnode->Attributes["x"] = LocationEdit->X->Text;
+                tnode->Attributes["y"] = LocationEdit->Y->Text;
+                tnode->Attributes["z"] = LocationEdit->Z->Text;
+               	SplashForm->Locations->SaveToFile();
+      		SplashForm->Locations->LoadFromFile();
+                LoadLocations();
+        }
 }
 //---------------------------------------------------------------------------
 void __fastcall TMainForm::Elimina1Click(TObject *Sender)
@@ -190,7 +190,7 @@ void __fastcall TMainForm::Inserisci1Click(TObject *Sender)
                 tnode = tnode->AddChild("subsection");
                 tnode->Attributes["name"] = LocationEdit->Subcategories->Text;
                 tnode = tnode->AddChild("place");
-                tnode->Text = LocationEdit->Name->Text;
+                tnode->Attributes["name"] = LocationEdit->Name->Text;
                 tnode->Attributes["x"] = LocationEdit->X->Text;
                 tnode->Attributes["y"] = LocationEdit->Y->Text;
 		tnode->Attributes["z"] = LocationEdit->Z->Text;

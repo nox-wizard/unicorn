@@ -1,8 +1,8 @@
 object LocationEdit: TLocationEdit
-  Left = 77
-  Top = 288
-  Width = 242
-  Height = 164
+  Left = 213
+  Top = 336
+  Width = 268
+  Height = 174
   Caption = 'Modifica locazione'
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET

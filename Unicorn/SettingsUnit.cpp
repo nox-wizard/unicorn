@@ -6,15 +6,14 @@
 #include "SplashUnit.h"
 #include "LoadFunctions.h"
 #include "XSSParseUnit.h"
-#include "ProgressUnit.h"
 #include "stringhe.hpp"
 
 #pragma hdrstop
 #pragma package(smart_init)
 
-inline char Charize(bool p)
+inline AnsiString Charize(bool p)
 {
-        return p ? 'y' : 'n';
+        return p ? "y" : "n";
 }
 
 //---------------------------------------------------------------------------
@@ -107,9 +106,7 @@ void __fastcall TMainForm::LoadXSSBtnClick(TObject *Sender)
                         SplashForm->Items->DocumentElement,
                         NoX73Comp->Checked
                         );
-                ProgressForm->Show();
                 par.Parse();
-                ProgressForm->Hide();
                 SplashForm->Items->SaveToFile();
                 SplashForm->Items->LoadFromFile();
                 SplashForm->Characters->SaveToFile();

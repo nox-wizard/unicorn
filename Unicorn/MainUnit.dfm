@@ -22,10 +22,10 @@ object MainForm: TMainForm
     Top = 0
     Width = 823
     Height = 238
-    ActivePage = s
+    ActivePage = ItemTab
     Align = alClient
-    PopupMenu = CharsPopup
-    TabIndex = 7
+    PopupMenu = FakePopup
+    TabIndex = 2
     TabOrder = 0
     object LauncherTab: TTabSheet
       Caption = 'Partenza'
@@ -358,7 +358,7 @@ object MainForm: TMainForm
         TabOrder = 4
         OnMouseDown = MappaMouseDown
         ControlData = {
-          00000100F2130000F21300000000000001000C000800000000005C0055006E00}
+          00000100F2130000F21300000000000001000C000800000000004F0052005C00}
       end
     end
     object ItemTab: TTabSheet
@@ -1740,5 +1740,9 @@ object MainForm: TMainForm
   object OpenNoxWizard: TOpenDialog
     Options = [ofReadOnly, ofHideReadOnly, ofPathMustExist, ofFileMustExist, ofEnableSizing]
     Left = 688
+  end
+  object FakePopup: TPopupMenu
+    Left = 664
+    Top = 24
   end
 end
