@@ -401,7 +401,7 @@ void __fastcall TMainForm::MenuItem1Click(TObject *Sender)
         if ( ObjectEditForm->ShowModal() == mrOk)
         {
                 _di_IXMLNode tnode = SplashForm->Items->DocumentElement->AddChild("category");
-                tnode->Attributes["name"] = ObjectEditForm->Categories->Text;
+                tnode->Attributes["name"] = ObjectEditForm->Categories->Text;
                 tnode = tnode->AddChild("subsection");
                 tnode->Attributes["name"] = ObjectEditForm->Subcategories->Text;
                 tnode = tnode->AddChild("item");
@@ -487,7 +487,7 @@ void __fastcall TMainForm::AddDynCmdClick(TObject *Sender)
                 LoadDynCmds();
         }
 }
-//---------------------------------------------------------------------------
+//--------------------- ˆ“ˆ“ˆ“ˆ----------------------------------------------
 void __fastcall TMainForm::AddParamsClick(TObject *Sender)
 {
 	if ( ! DynamicCmd->Text.IsEmpty() && ! CmdTitle->Text.IsEmpty() )
@@ -521,3 +521,4 @@ __declspec(dllexport) LRESULT CALLBACK HotKeyGet
 	return 0;
 }
 */
+
