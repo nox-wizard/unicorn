@@ -1,6 +1,6 @@
 ; software related
 !define MUI_PRODUCT "Unicorn GM-Tools Suite"
-!define MUI_VERSION "0.3.5"
+!define MUI_VERSION "0.3.5a"
 
 ; inclusione d'obbligo
 !include "MUI.nsh"
@@ -52,7 +52,7 @@ LangString DL_SUBTITLE ${LANG_ITALIAN} "Sto scaricando le librerie runtime"
 ; ----------------------------------------------------------------
   LicenseData /LANG=${LANG_ENGLISH} "docs/license.txt"
   LicenseData /LANG=${LANG_ITALIAN} "docs/license.txt"
-  OutFile "unicorn-suite-0.3.5.exe"
+  OutFile "unicorn-suite-0.3.5a.exe"
   InstallDir "$PROGRAMFILES\${MUI_PRODUCT}"
   !define TEMP $R0
 

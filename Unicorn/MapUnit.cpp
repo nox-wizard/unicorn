@@ -74,7 +74,7 @@ void __fastcall TMainForm::LocCategoryChange(TObject *Sender,
                 LocPlaces->Tag = Node->Parent->Index + ( Node->Index << 8 );
                 LocPlaces->Clear();
                 for(int i = 0; i < lista->Count; i++)
-                        LocPlaces->AddItem(lista->Nodes[i]->Text, LocPlaces);
+                        LocPlaces->AddItem(lista->Nodes[i]->Attributes["name"], LocPlaces);
                 #undef lista
         }
 }

@@ -4,6 +4,10 @@ Calling, UH is Herald.
 If there is no prefix, the change is common to all the Unicorn Suite's projects.
 (Common code or a deployed change).
 
+Release 0.3.5a
+2003/08/20
+ - UG: Fixed travel tab, sorry.
+
 Release 0.3.5
 2003/08/19
  - Restart the work on Unicorn with Wine running BCB6.
