@@ -22,10 +22,10 @@ object MainForm: TMainForm
     Top = 0
     Width = 764
     Height = 221
-    ActivePage = TweakTab
+    ActivePage = TravelTab
     Align = alClient
     PopupMenu = CharsPopup
-    TabIndex = 6
+    TabIndex = 1
     TabOrder = 0
     object LauncherTab: TTabSheet
       Caption = 'Partenza'

@@ -14,7 +14,7 @@ void LoadLocations()
 	MainForm->LocCategory->Items->Clear();
         MainForm->LocPlaces->Clear();
 
-	if ( ValidateCategories(SplashForm->Locations->DocumentElement->ChildNodes, true, SplashForm->Locations) )
+	if ( ValidateCategories(SplashForm->Locations->DocumentElement->ChildNodes, true, SplashForm->Locations, doc_locations) )
         {
         	SplashForm->Locations->SaveToFile();
         	SplashForm->Locations->LoadFromFile();
@@ -44,12 +44,12 @@ void LoadItems()
 	MainForm->ItmCategories->Items->Clear();
         MainForm->ItmList->Clear();
 
-	if ( ValidateCategories(SplashForm->Items->DocumentElement->ChildNodes, true, SplashForm->Items) )
+	if ( ValidateCategories(SplashForm->Items->DocumentElement->ChildNodes, true, SplashForm->Items, doc_items) )
         {
         	SplashForm->Items->SaveToFile();
         	SplashForm->Items->LoadFromFile();
         }
-        
+
         for(int i = 0; i < SplashForm->Items->DocumentElement->ChildNodes->Count; i++)
         {
         	#define tnode1 SplashForm->Items->DocumentElement->ChildNodes->Nodes[i]
@@ -73,7 +73,7 @@ void LoadCharacters()
 	MainForm->ChrCategories->Items->Clear();
         MainForm->ChrList->Clear();
 
-	if ( ValidateCategories(SplashForm->Characters->DocumentElement->ChildNodes, true, SplashForm->Characters) )
+	if ( ValidateCategories(SplashForm->Characters->DocumentElement->ChildNodes, true, SplashForm->Characters, doc_chars) )
         {
         	SplashForm->Characters->SaveToFile();
         	SplashForm->Characters->LoadFromFile();
@@ -190,14 +190,19 @@ void LoadDynCmds()
         #undef CurrNode
 }
 //---------------------------------------------------------------------------
-bool ValidateCategories(_di_IXMLNodeList list, bool sub, TXMLDocument *doc)
+bool ValidateCategories(_di_IXMLNodeList list, bool sub, TXMLDocument *doc, doc_type dt)
 {
+	bool modified = false;
+
+        if ( !sub && ValidateItems(list, doc, dt) )
+                modified = true;
+
 	std::vector<int> dacanc;
         std::vector<_di_IXMLNode> dacanc_nodi;
+
 	if ( list->Count == 1 )
         	return false;
-                
-	bool modified = false;
+
 	#define NODENAME(x) list->Nodes[x]->Attributes["name"]
 	for(int i = 0; i < list->Count; i++)
         {
@@ -221,38 +226,79 @@ bool ValidateCategories(_di_IXMLNodeList list, bool sub, TXMLDocument *doc)
                 {
                 	str1 = NODENAME(i);
                         if ( str1.Type() == varNull )
-                        	continue;
-                	try
-			{
-                	        str2 = NODENAME(j);
-                                if ( str2.Type() == varNull )
-                                	continue;
-                		if ( AnsiString(str1) == AnsiString(str2) )
-	                        {
-        	                	modified = true;
-                	        	JoinNodes(list->Nodes[i], list->Nodes[j]);
-                        	        dacanc.push_back(j);
-                                        dacanc_nodi.push_back(list->Nodes[j]);
-	                        }
-                        }
-                        catch( ... )
                         {
-                        	// TODO messagebox
+                                str1 = "<none>";
+                                NODENAME(i) = "<none>";
+                        }
+
+                        str2 = NODENAME(j);
+                        if ( str2.Type() == varNull )
+                        {
+                                str2 = "<none>";
+                                NODENAME(j) = "<none>";
+                        }
+
+                        if ( AnsiString(str1) == AnsiString(str2) )
+                        {
+                                modified = true;
+                                JoinNodes(list->Nodes[i], list->Nodes[j]);
+                       	        dacanc.push_back(j);
+                                dacanc_nodi.push_back(list->Nodes[j]);
                         }
                 }
                 if ( sub )
-	                if ( ValidateCategories(list->Nodes[i]->ChildNodes, false, doc) )
+                {
+	                if ( ValidateCategories(list->Nodes[i]->ChildNodes, false, doc, dt) )
+                        {
                         	modified = true;
+                                if ( !list->Nodes[i]->ChildNodes->Count )
+                                {
+                        	        dacanc.push_back(i);
+                                        dacanc_nodi.push_back(list->Nodes[i]);
+                                }
+                        }
+                }
         }
 
 	for(std::vector<_di_IXMLNode>::iterator it = dacanc_nodi.begin(); it != dacanc_nodi.end(); it++)
         	list->Remove(*it);
-        
+
         #undef NODENAME
         return modified;
 }
 //---------------------------------------------------------------------------
+bool ValidateItems(_di_IXMLNodeList list, TXMLDocument *doc, doc_type dt)
+{
+        std::vector<_di_IXMLNode> dacanc_nodi;
+        bool modified = false;
 
+	#define NODEATTR(x, attr) list->Nodes[x]->Attributes[attr]
+
+        for(int i = 0; i < list->Count; i++)
+        {
+                if (
+                        Stringize(NODEATTR(i, "name")).IsEmpty() ||
+                        (
+                                dt != doc_locations && (
+                                        Stringize(NODEATTR(i, "addid")).IsEmpty() ||
+                                        Stringize(NODEATTR(i, "id")).IsEmpty()
+                                )
+                        )
+                )
+                {
+	                dacanc_nodi.push_back(list->Nodes[i]);
+                        modified = true;
+                }
+        }
+
+	for(std::vector<_di_IXMLNode>::iterator it = dacanc_nodi.begin(); it != dacanc_nodi.end(); it++)
+        	list->Remove(*it);
+
+        #undef NODEATTR
+        return modified;
+}
+
+//---------------------------------------------------------------------------
 void JoinNodes(_di_IXMLNode dest, _di_IXMLNode sorg)
 {
 	#define list1 dest->ChildNodes
