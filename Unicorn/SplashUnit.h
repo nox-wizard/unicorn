@@ -45,6 +45,7 @@ __published:	// IDE-managed Components
 	TMenuItem *Oggetti1;
 	TMenuItem *Personaggi1;
 	TMenuItem *Ringraziamenti1;
+        TMenuItem *Tweak1;
 	void __fastcall LogoClick(TObject *Sender);
 	void __fastcall FormShow(TObject *Sender);
 	void __fastcall IconaClick(TObject *Sender);
