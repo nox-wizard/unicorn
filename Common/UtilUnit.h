@@ -22,7 +22,7 @@ int HexToInt(AnsiString str);
 \param type type of the node
 \return the interface to the node found
 */
-_di_IXMLNode GetNode(_di_IXMLNodeList list, AnsiString type);
+_di_IXMLNode GetNode(_di_IXMLNode list, AnsiString type);
 
 /*!
 \brief Convert the matrix index (x, y) in a vector index

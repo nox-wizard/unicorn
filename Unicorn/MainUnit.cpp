@@ -359,7 +359,10 @@ void __fastcall TMainForm::MenuItem4Click(TObject *Sender)
 void __fastcall TMainForm::MenuItem1Click(TObject *Sender)
 {
 	if ( ItmList->ItemIndex == -1 )
+        {
         	MenuItem2Click(Sender);
+                return;
+        }
 
 	ObjectEditForm->Categories->Clear();
         ObjectEditForm->Subcategories->Clear();
@@ -415,6 +418,12 @@ void __fastcall TMainForm::MenuItem1Click(TObject *Sender)
 
 void __fastcall TMainForm::MenuItem3Click(TObject *Sender)
 {
+	if ( ChrList->ItemIndex == -1 )
+        {
+        	MenuItem4Click(Sender);
+                return;
+        }
+
 	ObjectEditForm->Categories->Clear();
         ObjectEditForm->Subcategories->Clear();
         ObjectEditForm->Preview->ArtType = 1;

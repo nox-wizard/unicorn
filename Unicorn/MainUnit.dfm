@@ -22,10 +22,10 @@ object MainForm: TMainForm
     Top = 0
     Width = 764
     Height = 221
-    ActivePage = TweakTab
+    ActivePage = SpawnTabs
     Align = alClient
     PopupMenu = CharsPopup
-    TabIndex = 6
+    TabIndex = 3
     TabOrder = 0
     object LauncherTab: TTabSheet
       Caption = 'Partenza'
@@ -340,6 +340,7 @@ object MainForm: TMainForm
         Width = 153
         Height = 193
         Indent = 19
+        PopupMenu = PlacesPopup
         ReadOnly = True
         RowSelect = True
         TabOrder = 3
@@ -399,6 +400,7 @@ object MainForm: TMainForm
         Width = 153
         Height = 193
         Indent = 19
+        PopupMenu = ItemsPopup
         ReadOnly = True
         RowSelect = True
         TabOrder = 0
@@ -483,6 +485,7 @@ object MainForm: TMainForm
         Width = 153
         Height = 193
         Indent = 19
+        PopupMenu = CharsPopup
         ReadOnly = True
         RowSelect = True
         TabOrder = 0
@@ -495,6 +498,7 @@ object MainForm: TMainForm
         Height = 193
         ExtendedSelect = False
         ItemHeight = 13
+        PopupMenu = CharsPopup
         TabOrder = 1
         OnClick = ChrListClick
       end
