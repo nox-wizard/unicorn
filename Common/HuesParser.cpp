@@ -76,15 +76,11 @@ namespace Hues
         {
         	long huescrc32 = 0;
                 CRC32::FileCrc32((uopath + "\\hues.mul").c_str(), huescrc32);
-//                long oldcrc32 = GetSetupNode("cachecrc")->Attributes["hues"];
                 if ( !FileExists(ExtractFileDir(Application->ExeName) + "\\mulcache\\hues.uni") )
                 	oldcrc32 = 0;
 
                 if ( huescrc32 != oldcrc32 )
-                {
                 	CacheHues(uopath);
-//                        GetSetupNode("cachecrc")->Attributes["hues"] = AnsiString(huescrc32);
-                }
 
                 TFileStream *huescache = new TFileStream(
                 	ExtractFileDir(Application->ExeName) + "\\mulcache\\hues.uni",

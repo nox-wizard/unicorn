@@ -4,11 +4,13 @@ Calling, UH is Herald.
 If there is no prefix, the change is common to all the Unicorn Suite's projects.
 (Common code or a deployed change).
 
+Release 0.3.5
 2003/08/19
  - Restart the work on Unicorn with Wine running BCB6.
  - UG: Fixed the TProgressBar problem with some systems. [Bug 0000155]
  - UG: Fixed an error with OleVariant and bool settings (wasn't working on Wine).
  - UG: Fixed location document validation. [Bug 0000194]
+ - UR: Fixed palette, the clicked color is the one showed now (was +1).
 
 Release 0.3.4
 2003/07/11

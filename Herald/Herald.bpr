@@ -28,7 +28,7 @@
     <DEBUGLIBPATH value="$(BCB)\lib\debug"/>
     <RELEASELIBPATH value="$(BCB)\lib\release"/>
     <LINKER value="ilink32"/>
-    <USERDEFINES value="_DEBUG"/>
+    <USERDEFINES value=""/>
     <SYSDEFINES value="_RTLDLL;NO_STRICT"/>
     <MAINSOURCE value="Herald.cpp"/>
     <INCLUDEPATH value="..\Common;C:\Programmi\Borland\CBuilder6\Projects;E:\devel\Unisuite\Common;E:\devel\Unisuite\Herald;$(BCB)\include;$(BCB)\include\vcl"/>
@@ -40,12 +40,11 @@
     <IDLCFLAGS value="-I..\Common -IC:\Programmi\Borland\CBuilder6\Projects 
       -IE:\devel\Unisuite\Common -IE:\devel\Unisuite\Herald -I$(BCB)\include 
       -I$(BCB)\include\vcl -src_suffix cpp -D_DEBUG -boa"/>
-    <CFLAG1 value="-Od -H=$(BCB)\lib\vcl60.csm -Hc -Vx -Ve -X- -r- -a8 -6 -b- -k -y -v -vi- 
-      -c -tW -tWM"/>
-    <PFLAGS value="-N2c:\objects\herald -N0c:\objects\herald -$YD -$W -$O- -$A8 -v -JPHNE -M"/>
+    <CFLAG1 value="-O2 -H=$(BCB)\lib\vcl60.csm -Hc -Vx -Ve -X- -a8 -6 -b- -k- -vi -c -tW -tWM"/>
+    <PFLAGS value="-N2c:\objects\herald -N0c:\objects\herald -$Y- -$L- -$D- -$A8 -v -JPHNE -M"/>
     <RFLAGS value=""/>
-    <AFLAGS value="/mx /w2 /zd"/>
-    <LFLAGS value="-Ic:\objects\herald -D&quot;&quot; -aa -Tpe -x -Gn -v"/>
+    <AFLAGS value="/mx /w2 /zn"/>
+    <LFLAGS value="-Ic:\objects\herald -D&quot;&quot; -aa -Tpe -x -Gn"/>
     <OTHERFILES value=""/>
   </OPTIONS>
   <LINKER>
@@ -93,13 +92,19 @@ ProductName=Unicorn Suite
 ProductVersion=0.3.1
 Comments=http://noxwizard.sf.net/
 
+[Excluded Packages]
+c:\programmi\borland\cbuilder6\Bin\dclite60.bpl=Borland Integrated Translation Environment
+c:\programmi\borland\cbuilder6\Bin\dclwebsnap60.bpl=Borland WebSnap Components
+
 [HistoryLists\hlIncludePath]
-Count=1
-Item0=C:\Programmi\Borland\CBuilder6\Projects;E:\devel\Unisuite\Common;E:\devel\Unisuite\Herald;$(BCB)\include;$(BCB)\include\vcl
+Count=2
+Item0=..\Common;C:\Programmi\Borland\CBuilder6\Projects;E:\devel\Unisuite\Common;E:\devel\Unisuite\Herald;$(BCB)\include;$(BCB)\include\vcl
+Item1=C:\Programmi\Borland\CBuilder6\Projects;E:\devel\Unisuite\Common;E:\devel\Unisuite\Herald;$(BCB)\include;$(BCB)\include\vcl
 
 [HistoryLists\hlLibraryPath]
-Count=1
-Item0=C:\Programmi\Borland\CBuilder6\Projects;E:\devel\Unisuite\Common;E:\devel\Unisuite\Herald;$(BCB)\lib\obj;$(BCB)\lib
+Count=2
+Item0=..\Common;C:\Programmi\Borland\CBuilder6\Projects;E:\devel\Unisuite\Common;E:\devel\Unisuite\Herald;$(BCB)\lib\obj;$(BCB)\lib
+Item1=C:\Programmi\Borland\CBuilder6\Projects;E:\devel\Unisuite\Common;E:\devel\Unisuite\Herald;$(BCB)\lib\obj;$(BCB)\lib
 
 [HistoryLists\hlDebugSourcePath]
 Count=1
@@ -136,10 +141,5 @@ RemoteDebug=0
 ShowInfoMsgs=0
 LinkDebugVcl=0
 LinkCGLIB=0
-
-[CORBA]
-AddServerUnit=1
-AddClientUnit=1
-PrecompiledHeaders=1
   </IDEOPTIONS>
 </PROJECT>

@@ -41,7 +41,7 @@ void __fastcall TMainForm::ColorPaletteMouseDown(TObject *Sender,
         {
                 case mbLeft:
                         {
-                	        int hindex = m2v(X/10, Y/10, 60)+1;
+                	        int hindex = m2v(X/10, Y/10, 60);
                 	        Hues::PaintHue(hindex, HueColors->Canvas, 10, 30);
 
                                 ColorName->Text = Hues::GetName(hindex);
@@ -63,7 +63,6 @@ void __fastcall TMainForm::ColorPaletteMouseDown(TObject *Sender,
         }
 }
 //---------------------------------------------------------------------------
-
 void __fastcall TMainForm::HueColorsMouseDown(TObject *Sender,
       TMouseButton Button, TShiftState Shift, int X, int Y)
 {
@@ -77,8 +76,6 @@ void __fastcall TMainForm::HueColorsMouseDown(TObject *Sender,
         }
 }
 //---------------------------------------------------------------------------
-
-
 void __fastcall TMainForm::SaveBtnClick(TObject *Sender)
 {
         int hindex = HexToInt(ColorCode->Caption);
