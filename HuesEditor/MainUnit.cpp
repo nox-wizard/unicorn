@@ -52,7 +52,7 @@ void __fastcall TMainForm::ColorPaletteMouseDown(TObject *Sender,
                 case mbRight:
                                 if ( GotoForm->ShowModal() == mrOk )
                                 {
-                                        int hindex = GotoForm->Index.ToIntDef(1);
+                                        int hindex = GotoForm->Index->Text.ToIntDef(1);
                                         hindex = ( hindex < 1 ? hindex : 1 ); // min 1
                         	        Hues::PaintHue(hindex, HueColors->Canvas, 10, 30);
 

@@ -85,7 +85,7 @@ AutoIncBuild=1
 MajorVer=0
 MinorVer=1
 Release=1
-Build=154
+Build=155
 Debug=0
 PreRelease=0
 Special=0
@@ -97,7 +97,7 @@ CodePage=1252
 [Version Info Keys]
 CompanyName=
 FileDescription=Unicorn's Hues Editor
-FileVersion=0.1.1.154
+FileVersion=0.1.1.155
 InternalName=UHE
 LegalCopyright=© 2003 Diego &quot;Flameeyes&quot; Pettenò
 LegalTrademarks=

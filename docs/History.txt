@@ -8,6 +8,10 @@ If there is no prefix, the change is common to all the Unicorn Suite's projects.
  - UR: Clicking with right mouse button you can jump to a specified color index.
    For now you can only insert decimal indexes. If the index is < 1, is 1 the
    index actually used.
+ - Installer: now the dlls are downloaded from internet by the installer if it
+   can't find them in system directory.
+ - UG: Now the xss parser set as subsection name the filename of the script
+   where the item or char is.
 
 2003/04/26
  - UG: Launcher: Defaulted the port for clients to 2593 when adding a new one.
