@@ -1,6 +1,6 @@
 ; software related
 !define MUI_PRODUCT "Unicorn GM-Tools Suite"
-!define MUI_VERSION "0.3.2"
+!define MUI_VERSION "0.3.3"
 
 ; inclusione d'obbligo
 !include "MUI.nsh"
