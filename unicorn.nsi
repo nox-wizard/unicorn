@@ -1,6 +1,6 @@
 ; software related
 !define MUI_PRODUCT "Unicorn GM-Tools Suite"
-!define MUI_VERSION "0.2"
+!define MUI_VERSION "0.3"
 
 ; inclusione d'obbligo
 !include "MUI.nsh"
@@ -47,6 +47,8 @@ LangString DESC_calling $(LANG_ITALIAN) "Il client per la Remote Console di NoX 
   OutFile "unicorn-suite.exe"
   InstallDir "$PROGRAMFILES\${MUI_PRODUCT}"
   !define TEMP $R0
+
+!insertmacro MUI_RESERVEFILE_LANGDLL
 
 Section "Unicorn" basefiles
 
@@ -146,14 +148,19 @@ Section "Uninstall"
   
   Delete "$SMPROGRAMS\${TEMP}\Unicorn GM-Tool.lnk"
   Delete "$SMPROGRAMS\${TEMP}\Disinstalla.lnk"
+  Delete "$SMPROGRAMS\${TEMP}\Rainbow.lnk"
+  Delete "$SMPROGRAMS\${TEMP}\Calling.lnk"
   RMDir "$SMPROGRAMS\${TEMP}" ;Only if empty, so it won't delete other shortcuts
-    
+
   noshortcuts:
 
   RMDir "$INSTDIR"
   
   DeleteRegValue HKCU "Software\${MUI_PRODUCT}" "Start Menu Folder"
   DeleteRegValue HKCU "Software\${MUI_PRODUCT}" "Installer Language"
+  DeleteRegValue HKCU "Software\Borland\Locales" "$INSTDIR\Unicorn.exe"
+  DeleteRegValue HKCU "Software\Borland\Locales" "$INSTDIR\rainbow.exe"
+  DeleteRegValue HKCU "Software\Borland\Locales" "$INSTDIR\Calling.exe"
   DeleteRegKey HKLM "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Unicorn"
 
   ;Display the Finish header
@@ -168,24 +175,15 @@ SectionEnd
 !insertmacro MUI_FUNCTIONS_DESCRIPTION_END
 
 Function .onInit
-  ;Language selection
-  ;Font
-  Push Tahoma
-  Push 8
-  ;Languages
-  !insertmacro MUI_LANGDLL_PUSH "English"
-  !insertmacro MUI_LANGDLL_PUSH "Italian"
-  Push 2F ;2 = number of languages, F = change font
-  LangDLL::LangDialog "Installer Language" "Please select a language."
-  Pop $LANGUAGE
-  StrCmp $LANGUAGE "cancel" 0 +2
-    Abort
+  !insertmacro MUI_LANGDLL_DISPLAY
 FunctionEnd
 
 Function .onInstSuccess
 
   StrCmp $LANGUAGE "1040" Italian
     WriteRegStr HKCU "Software\Borland\Locales" "$INSTDIR\Unicorn.exe" "ENU"
+    WriteRegStr HKCU "Software\Borland\Locales" "$INSTDIR\rainbow.exe" "ENU"
+    WriteRegStr HKCU "Software\Borland\Locales" "$INSTDIR\Calling.exe" "ENU"
   Italian:
 FunctionEnd
 
