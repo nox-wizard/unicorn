@@ -48,6 +48,7 @@ object MainForm: TMainForm
     Top = 160
     Width = 217
     Height = 241
+    DataProvider = IpHtmlDataProvider1
     FixedTypeface = 'Courier New'
     FlagErrors = False
     PrintSettings.MarginLeft = 0.5
@@ -62,7 +63,7 @@ object MainForm: TMainForm
     DOMVendorDesc = 'MSXML'
   end
   object IpHtmlDataProvider1: TIpHtmlDataProvider
-    Left = 296
+    Left = 304
     Top = 112
   end
 end

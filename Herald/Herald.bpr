@@ -4,8 +4,9 @@
   <MACROS>
     <VERSION value="BCB.06.00"/>
     <PROJECT value="..\bin\Herald.exe"/>
-    <OBJFILES value="C:\Objects\Herald\Herald.obj C:\Objects\Herald\MainUnit.obj 
-      C:\Objects\Herald\UtilUnit.obj"/>
+    <OBJFILES value="c:\objects\herald\Herald.obj c:\objects\herald\MainUnit.obj 
+      c:\objects\herald\UtilUnit.obj c:\objects\herald\ErrorUnit.obj 
+      c:\objects\herald\stringhe.obj"/>
     <RESFILES value="Herald.res"/>
     <IDLFILES value=""/>
     <IDLGENFILES value=""/>
@@ -20,8 +21,8 @@
       dsnapcrba.bpi dsnapcon.bpi bcbsmp.bpi vclie.bpi xmlrtl.bpi inet.bpi 
       inetdbbde.bpi inetdbxpress.bpi inetdb.bpi nmfast.bpi webdsnap.bpi 
       bcbie.bpi websnap.bpi dclocx.bpi dbexpress.bpi dbxcds.bpi"/>
-    <PATHCPP value=".;..\Common"/>
-    <PATHPAS value=".;"/>
+    <PATHCPP value=".;..\Common;..\Common"/>
+    <PATHPAS value=".;..\Common"/>
     <PATHRC value=".;"/>
     <PATHASM value=".;"/>
     <DEBUGLIBPATH value="$(BCB)\lib\debug"/>
@@ -30,21 +31,21 @@
     <USERDEFINES value="_DEBUG"/>
     <SYSDEFINES value="_RTLDLL;NO_STRICT"/>
     <MAINSOURCE value="Herald.cpp"/>
-    <INCLUDEPATH value="..\Common;C:\Programmi\Borland\CBuilder6\Projects;E:\devel\Unisuite\Herald;$(BCB)\include;$(BCB)\include\vcl"/>
-    <LIBPATH value="..\Common;C:\Programmi\Borland\CBuilder6\Projects;E:\devel\Unisuite\Herald;$(BCB)\lib\obj;$(BCB)\lib"/>
+    <INCLUDEPATH value="C:\Programmi\Borland\CBuilder6\Projects;E:\devel\Unisuite\Common;E:\devel\Unisuite\Herald;$(BCB)\include;$(BCB)\include\vcl"/>
+    <LIBPATH value="C:\Programmi\Borland\CBuilder6\Projects;E:\devel\Unisuite\Common;E:\devel\Unisuite\Herald;$(BCB)\lib\obj;$(BCB)\lib"/>
     <WARNINGS value="-w-par"/>
     <OTHERFILES value=""/>
   </MACROS>
   <OPTIONS>
-    <IDLCFLAGS value="-I..\Common -IC:\Programmi\Borland\CBuilder6\Projects 
+    <IDLCFLAGS value="-IC:\Programmi\Borland\CBuilder6\Projects -IE:\devel\Unisuite\Common 
       -IE:\devel\Unisuite\Herald -I$(BCB)\include -I$(BCB)\include\vcl 
       -src_suffix cpp -D_DEBUG -boa"/>
-    <CFLAG1 value="-Od -H=$(BCB)\lib\vcl60.csm -Hc -Vx -Ve -X- -r- -a8 -6 -b- -d -k -y -v 
-      -vi- -c -tW -tWM"/>
-    <PFLAGS value="-N2C:\Objects\Herald -N0C:\Objects\Herald -$YD -$W -$O- -$A8 -v -JPHNE -M"/>
+    <CFLAG1 value="-Od -H=$(BCB)\lib\vcl60.csm -Hc -Vx -Ve -X- -r- -a8 -6 -b- -k -y -v -vi- 
+      -c -tW -tWM"/>
+    <PFLAGS value="-N2c:\objects\herald -N0c:\objects\herald -$YD -$W -$O- -$A8 -v -JPHNE -M"/>
     <RFLAGS value=""/>
     <AFLAGS value="/mx /w2 /zd"/>
-    <LFLAGS value="-IC:\Objects\Herald -D&quot;&quot; -aa -Tpe -x -Gn -v"/>
+    <LFLAGS value="-Ic:\objects\herald -D&quot;&quot; -aa -Tpe -x -Gn -v"/>
     <OTHERFILES value=""/>
   </OPTIONS>
   <LINKER>
@@ -57,7 +58,9 @@
       <FILE FILENAME="Herald.res" FORMNAME="" UNITNAME="Herald.res" CONTAINERID="ResTool" DESIGNCLASS="" LOCALCOMMAND=""/>
       <FILE FILENAME="Herald.cpp" FORMNAME="" UNITNAME="Herald" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
       <FILE FILENAME="MainUnit.cpp" FORMNAME="MainForm" UNITNAME="MainUnit" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
-      <FILE FILENAME="..\Common\UtilUnit.cpp" FORMNAME="" UNITNAME="UtilUnit" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\Common\UtilUnit.cpp" FORMNAME="" UNITNAME="UtilUnit.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\Common\ErrorUnit.cpp" FORMNAME="" UNITNAME="ErrorUnit.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\Common\stringhe.pas" FORMNAME="" UNITNAME="stringhe" CONTAINERID="PascalCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
   </FILELIST>
   <BUILDTOOLS>
   </BUILDTOOLS>
@@ -65,11 +68,11 @@
   <IDEOPTIONS>
 [Version Info]
 IncludeVerInfo=1
-AutoIncBuild=0
+AutoIncBuild=1
 MajorVer=0
 MinorVer=1
-Release=1
-Build=10
+Release=2
+Build=20
 Debug=0
 PreRelease=0
 Special=0
@@ -81,22 +84,22 @@ CodePage=1252
 [Version Info Keys]
 CompanyName=
 FileDescription=Unicorn's Herald
-FileVersion=0.1.1.10
-InternalName=HERALD
+FileVersion=0.1.2.20
+InternalName=UH
 LegalCopyright=© 2003 Diego &quot;Flameeyes&quot; Pettenò
 LegalTrademarks=
-OriginalFilename=HERALD
+OriginalFilename=herald.bpr
 ProductName=Unicorn Suite
-ProductVersion=0.2.0.0
-Comments=
+ProductVersion=0.3.1
+Comments=http://noxwizard.sf.net/
 
 [HistoryLists\hlIncludePath]
 Count=1
-Item0=C:\Programmi\Borland\CBuilder6\Projects;E:\devel\Unisuite\Herald;$(BCB)\include;$(BCB)\include\vcl
+Item0=C:\Programmi\Borland\CBuilder6\Projects;E:\devel\Unisuite\Common;E:\devel\Unisuite\Herald;$(BCB)\include;$(BCB)\include\vcl
 
 [HistoryLists\hlLibraryPath]
 Count=1
-Item0=C:\Programmi\Borland\CBuilder6\Projects;E:\devel\Unisuite\Herald;$(BCB)\lib\obj;$(BCB)\lib
+Item0=C:\Programmi\Borland\CBuilder6\Projects;E:\devel\Unisuite\Common;E:\devel\Unisuite\Herald;$(BCB)\lib\obj;$(BCB)\lib
 
 [HistoryLists\hlDebugSourcePath]
 Count=1
@@ -108,7 +111,7 @@ Item0=_DEBUG
 
 [HistoryLists\hlIntOutputDir]
 Count=1
-Item0=C:\Objects\Herald
+Item0=c:\objects\herald
 
 [HistoryLists\hlFinalOutputDir]
 Count=1
