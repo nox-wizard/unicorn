@@ -25,7 +25,6 @@ WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
                  Application->CreateForm(__classid(TLocationEdit), &LocationEdit);
                  Application->CreateForm(__classid(TObjectEditForm), &ObjectEditForm);
                  Application->CreateForm(__classid(TParamsForm), &ParamsForm);
-                 Application->CreateForm(__classid(TProgressForm), &ProgressForm);
                  Application->Run();
         }
         catch (Exception &exception)

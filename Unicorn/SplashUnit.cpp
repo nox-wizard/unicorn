@@ -30,11 +30,12 @@ void __fastcall TSplashForm::LogoClick(TObject *Sender)
 //---------------------------------------------------------------------------
 void __fastcall TSplashForm::FormShow(TObject *Sender)
 {
-	const short passo = 10;
+	static const short passo = 10;
+        AnsiString apppath = ExtractFileDir(Application->ExeName);
 
         WTFDoing->Caption = Stringhe_sf_Settings;
         Barra->Position += passo;
-        Settings->FileName = ExtractFileDir(Application->ExeName) + "\\" + Settings->FileName;
+        Settings->FileName = apppath + "\\settings.xml";
         Settings->Active = true;
         LoadSettings();
 
@@ -44,31 +45,31 @@ void __fastcall TSplashForm::FormShow(TObject *Sender)
 
 	WTFDoing->Caption = Stringhe_sf_Locations;
 	Barra->Position += passo;
-        Locations->FileName = ExtractFileDir(Application->ExeName) + "\\" + Locations->FileName;
+        Locations->FileName = apppath + "\\locations.xml";
         Locations->Active = true;
         LoadLocations();
 
         WTFDoing->Caption = Stringhe_sf_Items;
         Barra->Position += passo;
-        Items->FileName = ExtractFileDir(Application->ExeName) + "\\" + Items->FileName;
+        Items->FileName = apppath + "\\items.xml";
         Items->Active = true;
         LoadItems();
 
         WTFDoing->Caption = Stringhe_sf_NPCs;
         Barra->Position += passo;
-        Characters->FileName = ExtractFileDir(Application->ExeName) + "\\" + Characters->FileName;
+        Characters->FileName = apppath + "\\characters.xml";
         Characters->Active = true;
         LoadCharacters();
 
         WTFDoing->Caption = Stringhe_sf_Launcher;
         Barra->Position += passo;
-        Launcher->FileName = ExtractFileDir(Application->ExeName) + "\\" + Launcher->FileName;
+        Launcher->FileName = apppath + "\\launcher.xml";
         Launcher->Active = true;
         LoadClients();
 
         WTFDoing->Caption = Stringhe_sf_DynCmds;
         Barra->Position += passo;
-        DynCmds->FileName = ExtractFileDir(Application->ExeName) + "\\" + DynCmds->FileName;
+        DynCmds->FileName = apppath + "\\dyncmds.xml";
         DynCmds->Active = true;
         LoadDynCmds();
 

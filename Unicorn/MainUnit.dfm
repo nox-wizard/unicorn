@@ -1,6 +1,6 @@
 object MainForm: TMainForm
-  Left = 216
-  Top = 561
+  Left = 220
+  Top = 584
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
   Caption = 'Unicorn'

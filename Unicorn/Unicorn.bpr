@@ -44,7 +44,7 @@
     <DEBUGLIBPATH value="$(BCB)\lib\debug"/>
     <RELEASELIBPATH value="$(BCB)\lib\release"/>
     <LINKER value="ilink32"/>
-    <USERDEFINES value=""/>
+    <USERDEFINES value="_DEBUG"/>
     <SYSDEFINES value="NO_STRICT;_RTLDLL"/>
     <MAINSOURCE value="Unicorn.cpp"/>
     <INCLUDEPATH value="..\Common;MULParsers;Utils;$(BCB)\Imports;$(BCB)\include;$(BCB)\include\vcl"/>
@@ -55,12 +55,12 @@
   <OPTIONS>
     <IDLCFLAGS value="-I..\Common -IMULParsers -IUtils -I$(BCB)\Imports -I$(BCB)\include 
       -I$(BCB)\include\vcl -src_suffix cpp -boa"/>
-    <CFLAG1 value="-O2 -H=$(BCB)\lib\vcl60.csm -Hc -Q -Vx -Ve -X- -a4 -6 -b- -d -k- -vi -c 
-      -tW -tWM"/>
-    <PFLAGS value="-N2C:\Objects\Unicorn -N0C:\Objects\Unicorn -$Y- -$L- -$D- -$A8 -v -JPHNE -M"/>
+    <CFLAG1 value="-Od -H=$(BCB)\lib\vcl60.csm -Hc -Q -Vx -Ve -X- -r- -a4 -6 -b- -d -k -y -v 
+      -vi- -c -tW -tWM"/>
+    <PFLAGS value="-N2C:\Objects\Unicorn -N0C:\Objects\Unicorn -$Y+ -$W -$O- -$A8 -v -JPHNE -M"/>
     <RFLAGS value=""/>
-    <AFLAGS value="/mx /w2 /zn"/>
-    <LFLAGS value="-IC:\Objects\Unicorn -D&quot;&quot; -aa -Tpe -x -Gn -w-dup"/>
+    <AFLAGS value="/mx /w2 /zi"/>
+    <LFLAGS value="-IC:\Objects\Unicorn -D&quot;&quot; -aa -Tpe -x -Gn -w-dup -v"/>
     <OTHERFILES value=""/>
   </OPTIONS>
   <LINKER>
@@ -102,7 +102,7 @@ AutoIncBuild=1
 MajorVer=0
 MinorVer=3
 Release=4
-Build=240
+Build=241
 Debug=0
 PreRelease=1
 Special=0
@@ -114,13 +114,27 @@ CodePage=1252
 [Version Info Keys]
 CompanyName=
 FileDescription=Unicorn GM-Tool for NoX-Wizard
-FileVersion=0.3.4.240
+FileVersion=0.3.4.241
 InternalName=UNICORN
 LegalCopyright=© 2003 Diego &quot;Flameeyes&quot; Pettenò
 LegalTrademarks=
 OriginalFilename=unicorn.exe
 ProductName=Unicorn GM-Tools Suite
 ProductVersion=0.2
+
+[Excluded Packages]
+c:\programmi\borland\cbuilder6\Bin\DBWEBXPRT.BPL=Borland Web Wizard Package
+c:\programmi\borland\cbuilder6\Bin\dcl31w60.bpl=Delphi 1.0 Compatibility Components
+c:\programmi\borland\cbuilder6\Bin\dcldss60.bpl=Borland Decision Cube Components
+C:\Programmi\Borland\CBuilder6\Bin\dcltee60.bpl=TeeChart Components
+c:\programmi\borland\cbuilder6\Bin\DCLIB60.bpl=InterBase Data Access Components
+c:\programmi\borland\cbuilder6\Bin\dclindy60.bpl=Internet Direct (Indy) for D6 Property and Component Editors
+c:\programmi\borland\cbuilder6\Bin\DCLNMF60.bpl=NetMasters Fastnet Tools
+c:\programmi\borland\cbuilder6\Bin\dclqrt60.bpl=QuickReport Components
+c:\programmi\borland\cbuilder6\Bin\dcltqr60.bpl=TeeChart for QuickReport Components
+c:\programmi\borland\cbuilder6\Bin\idefilters60.bpl=IDE Filter for CPP32
+c:\programmi\borland\cbuilder6\Bin\dclite60.bpl=Borland Integrated Translation Environment
+c:\programmi\borland\cbuilder6\Bin\dclwebsnap60.bpl=Borland WebSnap Components
 
 [HistoryLists\hlIncludePath]
 Count=6
@@ -183,10 +197,5 @@ RemoteDebug=0
 ShowInfoMsgs=0
 LinkDebugVcl=0
 LinkCGLIB=0
-
-[CORBA]
-AddServerUnit=1
-AddClientUnit=1
-PrecompiledHeaders=1
   </IDEOPTIONS>
 </PROJECT>

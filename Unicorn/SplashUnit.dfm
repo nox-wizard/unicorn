@@ -1,5 +1,5 @@
 object SplashForm: TSplashForm
-  Left = 268
+  Left = 258
   Top = 238
   BorderIcons = []
   BorderStyle = bsNone
@@ -603,6 +603,6 @@ object SplashForm: TSplashForm
     BeforeOpen = LocationsBeforeOpen
     Left = 488
     Top = 136
-    DOMVendorDesc = 'Open XML'
+    DOMVendorDesc = 'MSXML'
   end
 end
