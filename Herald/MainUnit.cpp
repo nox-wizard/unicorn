@@ -12,6 +12,9 @@
 #pragma link "IpBroker"
 #pragma link "IpHtml"
 #pragma link "IpUtils"
+#pragma link "IpBroker"
+#pragma link "IpHtml"
+#pragma link "IpUtils"
 #pragma resource "*.dfm"
 TMainForm *MainForm;
 //---------------------------------------------------------------------------

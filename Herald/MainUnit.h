@@ -11,9 +11,6 @@
 #include <XMLDoc.hpp>
 #include <xmldom.hpp>
 #include <XMLIntf.hpp>
-#include <IpBroker.hpp>
-#include <IpHtml.hpp>
-#include <IpUtils.hpp>
 #include <ExtCtrls.hpp>
 //---------------------------------------------------------------------------
 class TMainForm : public TForm
@@ -24,8 +21,6 @@ __published:	// IDE-managed Components
         TLabel *Date;
         TMemo *Description;
         TXMLDocument *RSSFeed;
-        TIpHtmlPanel *IpHtmlPanel1;
-        TIpHtmlDataProvider *IpHtmlDataProvider1;
         void __fastcall FormShow(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
