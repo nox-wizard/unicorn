@@ -21,7 +21,7 @@ void LoadRegistry();
 void LoadDynCmds();
 void LoadRCServers();
 
-inline _di_IXMLNode GetSetupNode(AnsiString name)
+inline _di_IXMLNode GetSetupNode(AnsiString &name)
 {
         return GetNode(SplashForm->Settings->DocumentElement, name);
 }

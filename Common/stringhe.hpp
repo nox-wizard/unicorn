@@ -97,6 +97,8 @@ extern PACKAGE System::ResourceString _InvalidCoord;
 #define Stringhe_InvalidCoord System::LoadResourceString(&Stringhe::_InvalidCoord)
 extern PACKAGE System::ResourceString _err_uodir_notfound;
 #define Stringhe_err_uodir_notfound System::LoadResourceString(&Stringhe::_err_uodir_notfound)
+extern PACKAGE System::ResourceString _err_invalid_rssfeed;
+#define Stringhe_err_invalid_rssfeed System::LoadResourceString(&Stringhe::_err_invalid_rssfeed)
 
 }	/* namespace Stringhe */
 using namespace Stringhe;

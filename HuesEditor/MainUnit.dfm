@@ -82,4 +82,9 @@ object MainForm: TMainForm
     Ctl3D = True
     Left = 576
   end
+  object XMLDocument1: TXMLDocument
+    Left = 408
+    Top = 32
+    DOMVendorDesc = 'MSXML'
+  end
 end

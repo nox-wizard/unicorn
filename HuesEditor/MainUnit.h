@@ -10,6 +10,10 @@
 #include <ComCtrls.hpp>
 #include <Dialogs.hpp>
 #include <ExtCtrls.hpp>
+#include <msxmldom.hpp>
+#include <XMLDoc.hpp>
+#include <xmldom.hpp>
+#include <XMLIntf.hpp>
 //---------------------------------------------------------------------------
 class TMainForm : public TForm
 {
@@ -22,6 +26,7 @@ __published:	// IDE-managed Components
         TImage *ColorPalette;
         TLabel *ColorCode;
         TColorDialog *Colors;
+        TXMLDocument *XMLDocument1;
         void __fastcall FormCreate(TObject *Sender);
         void __fastcall GradientIndexChange(TObject *Sender);
         void __fastcall ColorPaletteMouseDown(TObject *Sender,

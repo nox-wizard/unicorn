@@ -37,25 +37,24 @@
     <DEBUGLIBPATH value="$(BCB)\lib\debug"/>
     <RELEASELIBPATH value="$(BCB)\lib\release"/>
     <LINKER value="ilink32"/>
-    <USERDEFINES value="_DEBUG"/>
+    <USERDEFINES value=""/>
     <SYSDEFINES value="_RTLDLL;NO_STRICT"/>
     <MAINSOURCE value="Calling.cpp"/>
     <INCLUDEPATH value="..\Common;C:\Programmi\Borland\CBuilder6\Projects;E:\devel\Unisuite\Telekinesis;$(BCB)\include;$(BCB)\include\vcl"/>
     <LIBPATH value="$(BCB)\Projects\Lib;..\Common;C:\Programmi\Borland\CBuilder6\Projects;E:\devel\Unisuite\Telekinesis;$(BCB)\lib\obj;$(BCB)\lib"/>
-    <WARNINGS value="-w-par"/>
+    <WARNINGS value="-w-par -w-8030 -w-8027"/>
     <OTHERFILES value=""/>
   </MACROS>
   <OPTIONS>
     <IDLCFLAGS value="-I..\Common -IC:\Programmi\Borland\CBuilder6\Projects 
       -IE:\devel\Unisuite\Telekinesis -I$(BCB)\include -I$(BCB)\include\vcl 
-      -src_suffix cpp -D_DEBUG -boa"/>
-    <CFLAG1 value="-Od -H=$(BCB)\lib\vcl60.csm -Hc -Vx -Ve -X- -r- -a8 -6 -b- -k -y -v -vi- 
-      -c -tW -tWM"/>
-    <PFLAGS value="-N2C:\Objects\Telekinesis -N0C:\Objects\Telekinesis -$YD -$W -$O- -$A8 -v 
+      -src_suffix cpp -boa"/>
+    <CFLAG1 value="-O2 -H=$(BCB)\lib\vcl60.csm -Hc -Vx -Ve -X- -a8 -6 -b- -k- -vi -c -tW -tWM"/>
+    <PFLAGS value="-N2C:\Objects\Telekinesis -N0C:\Objects\Telekinesis -$Y- -$L- -$D- -$A8 -v 
       -JPHNE -M"/>
     <RFLAGS value=""/>
-    <AFLAGS value="/mx /w2 /zd"/>
-    <LFLAGS value="-IC:\Objects\Telekinesis -D&quot;&quot; -aa -Tpe -x -Gn -v"/>
+    <AFLAGS value="/mx /w2 /zn"/>
+    <LFLAGS value="-IC:\Objects\Telekinesis -D&quot;&quot; -aa -Tpe -GD -s -Gn"/>
     <OTHERFILES value=""/>
   </OPTIONS>
   <LINKER>
@@ -84,7 +83,7 @@ AutoIncBuild=1
 MajorVer=0
 MinorVer=1
 Release=1
-Build=2
+Build=4
 Debug=0
 PreRelease=0
 Special=0
@@ -96,7 +95,7 @@ CodePage=1252
 [Version Info Keys]
 CompanyName=
 FileDescription=Unicorn's Remote Console Client
-FileVersion=0.1.1.2
+FileVersion=0.1.1.4
 InternalName=TELEKINESIS
 LegalCopyright=© 2003 Diego &quot;Flameeyes&quot; Pettenò
 LegalTrademarks=

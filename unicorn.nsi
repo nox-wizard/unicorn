@@ -20,10 +20,7 @@
   
   !define MUI_UNINSTALLER
   !define MUI_UNCONFIRMPAGE
-  
-  ;Modern UI System
-  !insertmacro MUI_SYSTEM
-  
+
 ; ----------------------------------------------------------------
 ; lingue
 ; ----------------------------------------------------------------
@@ -33,11 +30,11 @@
 LangString DESC_basefiles ${LANG_ENGLISH} "Executable and library files needed to execute Unicorn"
 LangString DESC_basefiles ${LANG_ITALIAN} "File eseguibili e di libreria necessari all'esecuzione di unicorn"
 
-LangString DESC_rainbow $(LANG_ENGLISH) "Unicorn's Hues-Editor"
-LangString DESC_rainbow $(LANG_ITALIAN) "L'editor Hues di Unicorn"
+LangString DESC_rainbow ${LANG_ENGLISH} "Unicorn's Hues-Editor"
+LangString DESC_rainbow ${LANG_ITALIAN} "L'editor Hues di Unicorn"
 
-LangString DESC_calling $(LANG_ENGLISH) "Unicorn's Remote Console Client for NoX"
-LangString DESC_calling $(LANG_ITALIAN) "Il client per la Remote Console di NoX di Unicorn"
+LangString DESC_calling ${LANG_ENGLISH} "Unicorn's Remote Console Client for NoX"
+LangString DESC_calling ${LANG_ITALIAN} "Il client per la Remote Console di NoX di Unicorn"
 
 ; ----------------------------------------------------------------
 ; Dati generici
@@ -61,7 +58,7 @@ Section "Unicorn" basefiles
   File "bin\unicorn.enu"        ; Unicorn English Resource DLL
   File "bin\uomap.ocx"          ; UOMap ActiveX
   File "bin\uoart.ocx"          ; UOArt ActiveX
-  File "bin\borlandmm.dll"      ; runtime libraries
+  File "bin\borlndmm.dll"      ; runtime libraries
   File "bin\cc3260mt.dll"       ; runtime libraries                               
 
   File "docs\license.txt"       ; GPL
@@ -72,15 +69,15 @@ Section "Unicorn" basefiles
   ; Menu avvio
   ; ----------------------------------------------------------------
   !insertmacro MUI_STARTMENU_WRITE_BEGIN
-    CreateDirectory "$SMPROGRAMS\${MUI_STARTMENU_VARIABLE}"
-    CreateShortCut "$SMPROGRAMS\${MUI_STARTMENU_VARIABLE}\Unicorn GM-Tool.lnk" "$INSTDIR\unicorn.exe"
-    CreateShortCut "$SMPROGRAMS\${MUI_STARTMENU_VARIABLE}\Disinstalla.lnk" "$INSTDIR\Uninstall.exe"
+    CreateDirectory "$SMPROGRAMS\${MUI_STARTMENUPAGE_VARIABLE}"
+    CreateShortCut "$SMPROGRAMS\${MUI_STARTMENUPAGE_VARIABLE}\Unicorn GM-Tool.lnk" "$INSTDIR\unicorn.exe"
+    CreateShortCut "$SMPROGRAMS\${MUI_STARTMENUPAGE_VARIABLE}\Disinstalla.lnk" "$INSTDIR\Uninstall.exe"
 
   ; ----------------------------------------------------------------
   ; Registro di configurazione
   ; ----------------------------------------------------------------
   ;Write shortcut location to the registry (for Uninstaller)
-  WriteRegStr HKCU "Software\${MUI_PRODUCT}" "Start Menu Folder" "${MUI_STARTMENU_VARIABLE}"
+  WriteRegStr HKCU "Software\${MUI_PRODUCT}" "Start Menu Folder" "${MUI_STARTMENUPAGE_VARIABLE}"
   !insertmacro MUI_STARTMENU_WRITE_END
 
   ;Write language to the registry (for the uninstaller)
@@ -106,14 +103,16 @@ Section "Rainbow" rainbow
   File "bin\rainbow.exe"
   File "bin\rainbow.enu"
   !insertmacro MUI_STARTMENU_WRITE_BEGIN
-    CreateShortCut "$SMPROGRAMS\${MUI_STARTMENU_VARIABLE}\Rainbow.lnk" "$INSTDIR\rainbow.exe"
+    CreateShortCut "$SMPROGRAMS\${MUI_STARTMENUPAGE_VARIABLE}\Rainbow.lnk" "$INSTDIR\rainbow.exe"
+  !insertmacro MUI_STARTMENU_WRITE_END
 SectionEnd
 
 Section "Calling" calling
   File "bin\Calling.exe"
   File "bin\Calling.enu"
   !insertmacro MUI_STARTMENU_WRITE_BEGIN
-    CreateShortCut "$SMPROGRAMS\${MUI_STARTMENU_VARIABLE}\Calling.lnk" "$INSTDIR\Calling.exe"
+    CreateShortCut "$SMPROGRAMS\${MUI_STARTMENUPAGE_VARIABLE}\Calling.lnk" "$INSTDIR\Calling.exe"
+  !insertmacro MUI_STARTMENU_WRITE_END
 SectionEnd
 
 Section "Uninstall"
@@ -143,9 +142,9 @@ Section "Uninstall"
   
   ;Remove shortcut
   ReadRegStr ${TEMP} HKCU "Software\${MUI_PRODUCT}" "Start Menu Folder"
-  
+
   StrCmp ${TEMP} "" noshortcuts
-  
+
   Delete "$SMPROGRAMS\${TEMP}\Unicorn GM-Tool.lnk"
   Delete "$SMPROGRAMS\${TEMP}\Disinstalla.lnk"
   Delete "$SMPROGRAMS\${TEMP}\Rainbow.lnk"

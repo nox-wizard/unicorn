@@ -43,10 +43,26 @@ object MainForm: TMainForm
     Height = 89
     TabOrder = 0
   end
+  object IpHtmlPanel1: TIpHtmlPanel
+    Left = 8
+    Top = 160
+    Width = 217
+    Height = 241
+    FixedTypeface = 'Courier New'
+    FlagErrors = False
+    PrintSettings.MarginLeft = 0.5
+    PrintSettings.MarginTop = 0.5
+    PrintSettings.MarginRight = 0.5
+    PrintSettings.MarginBottom = 0.5
+  end
   object RSSFeed: TXMLDocument
     FileName = 'http://sourceforge.net/export/rss2_projnews.php?group_id=30584'
     Options = [doAttrNull]
     Left = 8
     DOMVendorDesc = 'MSXML'
+  end
+  object IpHtmlDataProvider1: TIpHtmlDataProvider
+    Left = 296
+    Top = 112
   end
 end

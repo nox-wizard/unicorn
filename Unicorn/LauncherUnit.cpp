@@ -186,7 +186,7 @@ void __fastcall TMainForm::AddBtnClick(TObject *Sender)
         EditBtn->Enabled = false;
         LaunchBtn->Enabled = false;
 
-        ClientPath->Text = GetSetupNode("misc")->Attributes["defaultclient"];
+        ClientPath->Text = Stringize(GetSetupNode("misc")->Attributes["defaultclient"]);
 	EntryName->Text = "";
         AccountName->Text = "";
         AccountPassword->Text = "";
@@ -259,8 +259,8 @@ void __fastcall TMainForm::LaunchBtnClick(TObject *Sender)
         {
         	for(int i = 0; i < tnode->ChildNodes->Count; i++)
 	        {
-		        AnsiString from = tnode->ChildNodes->Nodes[i]->Attributes["from"],
-                		   to = tnode->ChildNodes->Nodes[i]->Attributes["to"];
+		        AnsiString from = Stringize(tnode->ChildNodes->Nodes[i]->Attributes["from"]),
+                		   to = Stringize(tnode->ChildNodes->Nodes[i]->Attributes["to"]);
 	                CopyFile(from.c_str(), to.c_str(), false);
         	}
         }

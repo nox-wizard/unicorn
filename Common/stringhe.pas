@@ -41,6 +41,7 @@ resourcestring
         sf_FileNotFound		= 'Il file %s necessario all''avvio di Unicorn non trovato';
 	InvalidCoord            = 'Coordinate scelte non valide';
         err_uodir_notfound      = 'Cartella di Ultima OnLine non trovata, è installato nel sistema?';
+        err_invalid_rssfeed     = 'Feed RSS non valido';
 implementation
 begin
 end.

@@ -8,6 +8,7 @@
 #include "stringhe.hpp"
 #include "UtilUnit.h"
 #include "ErrorUnit.h"
+#include "AddServerUnit.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"
@@ -302,10 +303,9 @@ void __fastcall TMainForm::ServerPortChange(TObject *Sender)
         ServerList->ItemIndex = -1;        
 }
 //---------------------------------------------------------------------------
-
 void __fastcall TMainForm::AddServerBtnClick(TObject *Sender)
 {
-        AddServerForm->ServerName->Text = ServerUsername->Text + " @ " + ServerIP->Texts;
+        AddServerForm->ServerName->Text = ServerUsername->Text + " @ " + ServerIP->Text;
         if ( AddServerForm->ShowModal() == mrOk )
         {
                 _di_IXMLNode N = RCServers->DocumentElement->AddChild("server");
