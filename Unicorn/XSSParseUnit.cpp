@@ -14,6 +14,7 @@
 
 TXSSParser::TXSSParser(AnsiString fn, AnsiString nxwpath, IXMLNode *CHARS, IXMLNode *ITEMS, bool c73)
 {
+        filename = fn;
 	compat73 = c73;
 	chars = CHARS;
         items = ITEMS;
@@ -24,6 +25,7 @@ TXSSParser::TXSSParser(AnsiString fn, AnsiString nxwpath, IXMLNode *CHARS, IXMLN
 
 TXSSParser::TXSSParser(AnsiString fn)
 {
+        filename = fn;
         file.open(fn.c_str());
 }
 
@@ -218,9 +220,9 @@ void TXSSParser::ParseItem()
         	Item.addid = defined[Item.addid];                       
 
         _di_IXMLNode tnode = items->AddChild("category");
-        tnode->Attributes["name"] = ( Item.category.IsEmpty() ? AnsiString("<none>") : Item.category );
+        tnode->Attributes["name"] = ( Item.category.IsEmpty() ? filename : Item.category );
         tnode = tnode->AddChild("subsection");
-        tnode->Attributes["name"] = ( Item.subsection.IsEmpty() ? AnsiString("<none>") : Item.subsection );
+        tnode->Attributes["name"] = ( Item.subsection.IsEmpty() ? filename : Item.subsection );
         tnode = tnode->AddChild("item");
         tnode->Attributes["name"] = ( Item.description.IsEmpty() ? ( Item.name2.IsEmpty() ? Item.name : Item.name2 ) : Item.description );
         tnode->Attributes["addid"] = Item.addid;
@@ -313,9 +315,9 @@ void TXSSParser::ParseChar()
         	Item.addid = defined[Char.addid];
 
         _di_IXMLNode tnode = chars->AddChild("category");
-        tnode->Attributes["name"] = ( Char.category.IsEmpty() ? AnsiString("<none>") : Char.category );
+        tnode->Attributes["name"] = ( Char.category.IsEmpty() ? filename : Char.category );
         tnode = tnode->AddChild("subsection");
-        tnode->Attributes["name"] = ( Char.subsection.IsEmpty() ? AnsiString("<none>") : Char.subsection );
+        tnode->Attributes["name"] = ( Char.subsection.IsEmpty() ? filename : Char.subsection );
         tnode = tnode->AddChild("char");
         tnode->Attributes["name"] = ( Char.description.IsEmpty() ? Char.name : Char.description );
         tnode->Attributes["addid"] = Char.addid;
@@ -404,7 +406,6 @@ void TXSSParser::ParseDefault(AnsiString code)
                         temp.subsection = temp2.subsection.IsEmpty() ? temp.subsection : temp2.subsection;
                         temp.id = temp2.id.IsEmpty() ? temp.id : temp2.id;
                         temp.name = temp2.name.IsEmpty() ? temp.name : temp2.name;
-                        // temp.name2 = temp2.name2.IsEmpty() ? temp.name2 : temp2.name2;
                 }
         }
 

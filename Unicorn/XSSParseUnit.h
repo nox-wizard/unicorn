@@ -85,6 +85,7 @@ class TXSSParser
                 static bool compat73;
                 bool destroybuf;
                 AnsiString noxpath;
+                AnsiString filename;
 
                 void ParseNewLine();
 		void RemoveSpaces();
