@@ -99,6 +99,8 @@ extern PACKAGE System::ResourceString _err_uodir_notfound;
 #define Stringhe_err_uodir_notfound System::LoadResourceString(&Stringhe::_err_uodir_notfound)
 extern PACKAGE System::ResourceString _err_invalid_rssfeed;
 #define Stringhe_err_invalid_rssfeed System::LoadResourceString(&Stringhe::_err_invalid_rssfeed)
+extern PACKAGE System::ResourceString _err_nxwpath_invalid;
+#define Stringhe_err_nxwpath_invalid System::LoadResourceString(&Stringhe::_err_nxwpath_invalid)
 
 }	/* namespace Stringhe */
 using namespace Stringhe;

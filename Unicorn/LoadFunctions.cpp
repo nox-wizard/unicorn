@@ -19,7 +19,7 @@ void LoadLocations()
         	SplashForm->Locations->SaveToFile();
         	SplashForm->Locations->LoadFromFile();
         }
-        
+
         for(int i = 0; i < SplashForm->Locations->DocumentElement->ChildNodes->Count; i++)
         {
         	#define tnode1 SplashForm->Locations->DocumentElement->ChildNodes->Nodes[i]
@@ -78,7 +78,7 @@ void LoadCharacters()
         	SplashForm->Characters->SaveToFile();
         	SplashForm->Characters->LoadFromFile();
         }
-        
+
         for(int i = 0; i < SplashForm->Characters->DocumentElement->ChildNodes->Count; i++)
         {
         	#define tnode1 SplashForm->Characters->DocumentElement->ChildNodes->Nodes[i]
@@ -194,9 +194,6 @@ bool ValidateCategories(_di_IXMLNodeList list, bool sub, TXMLDocument *doc, doc_
 {
 	bool modified = false;
 
-        if ( !sub && ValidateItems(list, doc, dt) )
-                modified = true;
-
 	std::vector<int> dacanc;
         std::vector<_di_IXMLNode> dacanc_nodi;
 
@@ -206,6 +203,11 @@ bool ValidateCategories(_di_IXMLNodeList list, bool sub, TXMLDocument *doc, doc_
 	#define NODENAME(x) list->Nodes[x]->Attributes["name"]
 	for(int i = 0; i < list->Count; i++)
         {
+		if ( ! list->Nodes[i] )
+			continue;
+
+                if ( ! sub )
+                        modified |= ValidateItems(list->Nodes[i]->ChildNodes, doc, dt);
         	bool pass = false;
         	for(std::vector<int>::iterator it = dacanc.begin(); it != dacanc.end(); it++)
                 	if ( *it == i )
@@ -214,31 +216,31 @@ bool ValidateCategories(_di_IXMLNodeList list, bool sub, TXMLDocument *doc, doc_
                         }
 
                 if ( pass ) continue;
-                
+
                 if ( list->Nodes[i]->ChildNodes->Count == 0 )
                 {
 		        dacanc.push_back(i);
 	                dacanc_nodi.push_back(list->Nodes[i]);
+                        continue;
                 }
 
-		OleVariant str1, str2;
+		OleVariant str1 = NODENAME(i), str2;
+/*		if ( Stringize(str1).IsEmpty() )
+		{
+			str1 = "<none>";
+			NODENAME(i) = "<none>";
+		}
+*/
         	for(int j = i+1; j < list->Count; j++)
                 {
-                	str1 = NODENAME(i);
-                        if ( str1.Type() == varNull )
-                        {
-                                str1 = "<none>";
-                                NODENAME(i) = "<none>";
-                        }
-
                         str2 = NODENAME(j);
-                        if ( str2.Type() == varNull )
+/*                        if ( str2.Type() == varNull )
                         {
                                 str2 = "<none>";
                                 NODENAME(j) = "<none>";
                         }
-
-                        if ( AnsiString(str1) == AnsiString(str2) )
+*/
+                        if ( Stringize(str1) == Stringize(str2) )
                         {
                                 modified = true;
                                 JoinNodes(list->Nodes[i], list->Nodes[j]);
@@ -256,6 +258,7 @@ bool ValidateCategories(_di_IXMLNodeList list, bool sub, TXMLDocument *doc, doc_
                         	        dacanc.push_back(i);
                                         dacanc_nodi.push_back(list->Nodes[i]);
                                 }
+
                         }
                 }
         }

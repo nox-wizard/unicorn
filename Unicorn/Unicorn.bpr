@@ -100,9 +100,9 @@
 IncludeVerInfo=1
 AutoIncBuild=1
 MajorVer=0
-MinorVer=2
-Release=1
-Build=220
+MinorVer=3
+Release=4
+Build=240
 Debug=0
 PreRelease=1
 Special=0
@@ -114,7 +114,7 @@ CodePage=1252
 [Version Info Keys]
 CompanyName=
 FileDescription=Unicorn GM-Tool for NoX-Wizard
-FileVersion=0.2.1.220
+FileVersion=0.3.4.240
 InternalName=UNICORN
 LegalCopyright=© 2003 Diego &quot;Flameeyes&quot; Pettenò
 LegalTrademarks=

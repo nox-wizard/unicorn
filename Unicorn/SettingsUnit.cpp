@@ -7,6 +7,7 @@
 #include "LoadFunctions.h"
 #include "XSSParseUnit.h"
 #include "ProgressUnit.h"
+#include "stringhe.hpp"
 
 #pragma hdrstop
 #pragma package(smart_init)
@@ -51,7 +52,7 @@ void __fastcall TMainForm::Label2Click(TObject *Sender)
 void __fastcall TMainForm::AoTClick(TObject *Sender)
 {
         GetSetupNode("visualization")->Attributes["aot"] = Charize( AoT->Checked );
-	MainForm->FormStyle = ( AoT->Checked ? fsStayOnTop : fsNormal );        
+	MainForm->FormStyle = ( AoT->Checked ? fsStayOnTop : fsNormal );
 }
 //---------------------------------------------------------------------------
 
@@ -90,7 +91,14 @@ void __fastcall TMainForm::BrowseNoxWizardBtnClick(TObject *Sender)
 //---------------------------------------------------------------------------
 void __fastcall TMainForm::LoadXSSBtnClick(TObject *Sender)
 {
-	if ( OpenScript->Execute() )
+	if ( NXWPath->Text.IsEmpty() )
+	{
+		Errors::ThrowError(
+			Stringhe_err_nxwpath_invalid,
+			Errors::ehFatal,
+			MB_OK
+		);
+	} else if ( OpenScript->Execute() )
         {
         	TXSSParser par(
                 	OpenScript->FileName,
@@ -99,8 +107,6 @@ void __fastcall TMainForm::LoadXSSBtnClick(TObject *Sender)
                         SplashForm->Items->DocumentElement,
                         NoX73Comp->Checked
                         );
-                ProgressForm->FileProgress->Max = 0;
-                ProgressForm->FileProgress->Position = 0;
                 ProgressForm->Show();
                 par.Parse();
                 ProgressForm->Hide();
@@ -115,7 +121,7 @@ void __fastcall TMainForm::LoadXSSBtnClick(TObject *Sender)
 //---------------------------------------------------------------------------
 void __fastcall TMainForm::NoX73CompClick(TObject *Sender)
 {
-        GetSetupNode("misc")->Attributes["73compat"] = Charize( NoX73Comp->Checked );
+        GetSetupNode("misc")->Attributes["compat73"] = Charize( NoX73Comp->Checked );
 }
 //---------------------------------------------------------------------------
 

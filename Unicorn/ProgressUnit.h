@@ -12,7 +12,7 @@
 class TProgressForm : public TForm
 {
 __published:	// IDE-managed Components
-	TProgressBar *FileProgress;
+        TLabel *Label1;
 private:	// User declarations
 public:		// User declarations
 	__fastcall TProgressForm(TComponent* Owner);

@@ -42,6 +42,7 @@ resourcestring
 	InvalidCoord            = 'Coordinate scelte non valide';
         err_uodir_notfound      = 'Cartella di Ultima OnLine non trovata, è installato nel sistema?';
         err_invalid_rssfeed     = 'Feed RSS non valido';
+        err_nxwpath_invalid     = 'Path di NoX-Wizard non valido';
 implementation
 begin
 end.

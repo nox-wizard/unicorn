@@ -1,4 +1,2 @@
 2003/04/05
  - Complete the hotkeys' hook
- - Use Boolize and Stringize for access to xml informations (resolves possible
-   exceptions when the xml isn't valud

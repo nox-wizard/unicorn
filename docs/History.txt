@@ -4,6 +4,13 @@ Calling, UH is Herald.
 If there is no prefix, the change is common to all the Unicorn Suite's projects.
 (Common code or a deployed change).
 
+2003/07/11
+ - UG: Fixed the error that prevents the load XSS function to work.
+
+Release 0.3.3
+ - Updated UOMap OCX, sorry no changelog in this version, because I used the
+   same binaries.
+
 Release 0.3.2
 2003/05/14
  - Updated UOArt and UOMap OCXs to 1.3 version from sphere-axis

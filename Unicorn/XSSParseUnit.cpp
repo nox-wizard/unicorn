@@ -7,14 +7,13 @@
 #include <cstring>
 #include <locale>
 #include <cstdlib>
-#include "ProgressUnit.h"
 //---------------------------------------------------------------------------
 
 #pragma package(smart_init)
 
 TXSSParser::TXSSParser(AnsiString fn, AnsiString nxwpath, IXMLNode *CHARS, IXMLNode *ITEMS, bool c73)
 {
-        filename = fn;
+        filename = ExtractFileName(fn);
 	compat73 = c73;
 	chars = CHARS;
         items = ITEMS;
@@ -25,7 +24,7 @@ TXSSParser::TXSSParser(AnsiString fn, AnsiString nxwpath, IXMLNode *CHARS, IXMLN
 
 TXSSParser::TXSSParser(AnsiString fn)
 {
-        filename = fn;
+        filename = ExtractFileName(fn);
         file.open(fn.c_str());
 }
 
@@ -65,7 +64,6 @@ void TXSSParser::ParseNewLine()
                 *p = '\0';
                 p++;
                 defined.insert( t_defined::value_type( AnsiString(s), std::atoi(p) ) );
-                ProgressForm->FileProgress->Max++;
         }
         else if ( !std::strncmpi(riga, "#include", 8 ) )
         {
@@ -437,7 +435,6 @@ void TXSSParser::ClearStructs()
         Char.name = "";
         Char.subsection = "";
 
-        ProgressForm->FileProgress->Position++;
 }
 
 char TXSSParser::buffer[256];
@@ -450,3 +447,4 @@ IXMLNode *TXSSParser::chars;
 IXMLNode *TXSSParser::items;
 int TXSSParser::istanze = 0;
 bool TXSSParser::compat73 = false;
+
